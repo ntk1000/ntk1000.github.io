@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="keyword 1, keyword 2, keyword 3" name="keywords">
 <meta content="ntk1000" name="author">
-<meta property="og:title" content="sic - ntk1000 zlog">
-<meta property="og:url" content="https://ntk1000.github.io/post/2015-02-03-sic/">
+<meta property="og:title" content="feb 2017 log - ntk1000 zlog">
+<meta property="og:url" content="https://ntk1000.github.io/post/2017-02-27/">
 <meta property="og:description" content="Your description here">
 <meta property="og:type" content="website" />
-<title>sic | ntk1000 zlog</title>
+<title>feb 2017 log | ntk1000 zlog</title>
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -69,20 +69,46 @@
 
 <section class="section">
   <div class="container">
-    <h1 class="title">sic</h1>
-    <h2 class="subtitle is-5">February 3, 2015 by ntk1000</h2>
+    <h1 class="title">feb 2017 log</h1>
+    <h2 class="subtitle is-5">February 27, 2017 by ntk1000</h2>
     
     <div class="content">
-      <p>週末から風邪、体調よくない　喉痛い</p>
+      
+
+<h2 id="2017-02-20">2017-02-20</h2>
+
+<p>docker (for mac) gc</p>
+
+<pre><code>docker rm $(docker ps -q -f 'status=exited')
+docker rmi $(docker images -q -f &quot;dangling=true&quot;)
+</code></pre>
+
+<h2 id="2017-02-09">2017-02-09</h2>
+
+<p>curl only shows headers via <a href="http://te2u.hatenablog.jp/entry/2015/08/04/001554">http://te2u.hatenablog.jp/entry/2015/08/04/001554</a></p>
+
+<pre><code>curl -s -D - http://example.com -o /dev/null
+</code></pre>
+
+<p>-s : silent mode
+-D : show headers
+-o : out responcebody to&hellip;</p>
+
+<h2 id="2017-02-07">2017-02-07</h2>
+
+<p>rm under s3 bucket</p>
+
+<pre><code>aws s3 rm s3://bucket-name/ --recursive
+</code></pre>
 
     </div>
     
         <div class="nav-left">
-    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://twitter.com/home?status=sic - https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
-    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f&title=sic" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-02-27%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-02-27%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-02-27%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=feb%202017%20log - https%3a%2f%2fntk1000.github.io%2fpost%2f2017-02-27%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-02-27%2f&title=feb%202017%20log" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
     
     </div>
     

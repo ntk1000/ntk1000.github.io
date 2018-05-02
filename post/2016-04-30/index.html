@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="keyword 1, keyword 2, keyword 3" name="keywords">
+<meta content="ntk1000" name="author">
+<meta property="og:title" content="apr 2016 log - ntk1000 zlog">
+<meta property="og:url" content="https://ntk1000.github.io/post/2016-04-30/">
+<meta property="og:description" content="Your description here">
+<meta property="og:type" content="website" />
+<title>apr 2016 log | ntk1000 zlog</title>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://ntk1000.github.io/css/style.css">
+<link rel="shortcut icon" href="https://ntk1000.github.io/wave.ico">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+
+</head>
+
+<body>
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://ntk1000.github.io"><h1 class="title is-4">ntk1000 zlog</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://linkedin.com/in/jun-asano-72648213b" target="_blank">
+            <span class="icon">
+              <i class="fa fa-linkedin-square"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://ntk1000.github.io/index.xml" target="_blank">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">apr 2016 log</h1>
+    <h2 class="subtitle is-5">April 30, 2016 by ntk1000</h2>
+    
+    <div class="content">
+      
+
+<h2 id="2016-04-28">2016-04-28</h2>
+
+<p>docker network time out</p>
+
+<pre><code>docker-machine restart default
+eval $(docker-machine env default)
+</code></pre>
+
+<h2 id="2016-04-27">2016-04-27</h2>
+
+<p><a href="http://yuuki.hatenablog.com/entry/diy-container">http://yuuki.hatenablog.com/entry/diy-container</a></p>
+
+<h2 id="2016-04-26">2016-04-26</h2>
+
+<p><a href="https://github.com/progrium/entrykit">https://github.com/progrium/entrykit</a></p>
+
+<h2 id="2016-04-25">2016-04-25</h2>
+
+<p>sick sick</p>
+
+<h2 id="2016-04-24">2016-04-24</h2>
+
+<p>i&rsquo;m sick</p>
+
+<h2 id="2016-04-23">2016-04-23</h2>
+
+<p><a href="https://play.golang.org/p/TYOd9ELo2m">https://play.golang.org/p/TYOd9ELo2m</a></p>
+
+<p><a href="https://play.golang.org/p/Xs2SQ59gez">https://play.golang.org/p/Xs2SQ59gez</a></p>
+
+<p><a href="http://play.golang.org/p/VdKMLKMYse">http://play.golang.org/p/VdKMLKMYse</a></p>
+
+<p><a href="http://play.golang.org/p/sCcfzFuzqR">http://play.golang.org/p/sCcfzFuzqR</a></p>
+
+<p><a href="https://play.golang.org/p/tlaYWTKXGr">https://play.golang.org/p/tlaYWTKXGr</a></p>
+
+<p><a href="https://play.golang.org/p/DoBYGQruo6">https://play.golang.org/p/DoBYGQruo6</a></p>
+
+<h2 id="2016-04-22">2016-04-22</h2>
+
+<ul>
+<li><p>golang testing</p>
+
+<ul>
+<li>via <a href="https://medium.com/@benbjohnson/structuring-tests-in-go-46ddee7a25c#.x9lf1gida">https://medium.com/@benbjohnson/structuring-tests-in-go-46ddee7a25c#.x9lf1gida</a></li>
+<li>no frameworks</li>
+<li>&ldquo;underscore test&rdquo; file</li>
+<li>test-specific types
+*</li>
+<li><a href="https://speakerdeck.com/mitchellh/advanced-testing-with-go">https://speakerdeck.com/mitchellh/advanced-testing-with-go</a> is also fine slide for testing</li>
+</ul></li>
+
+<li><p>i love test</p></li>
+</ul>
+
+<h2 id="2016-04-21">2016-04-21</h2>
+
+<pre><code>package main
+ 
+import(
+  &quot;fmt&quot;
+  &quot;reflect&quot;
+)
+
+// Data Model
+type User struct {
+  Id  int
+  Name string
+  Origin string
+  Query func()
+  Tags map[string]string
+  Fields []string
+}
+ 
+func main(){
+
+  list := GetAttrName(&amp;User{})
+  // slice with ... options passes ... parameters
+  PrintName(list...)
+
+}
+
+// GetAttrName returns struct attributes name
+func GetAttrName(m interface{}) ([]string) {
+
+  typ := reflect.TypeOf(m)
+  typ = typ.Elem()
+
+  attrs := []string{}
+
+  // loop through the struct's fields and set the map
+  for i := 0; i &lt; typ.NumField(); i++ {
+    attrs = append(attrs,typ.Field(i).Name)
+  }
+
+  return attrs
+}
+
+// PrintName passing arguments to ... parameters
+func PrintName(list ...string){
+  for _, name := range list {
+    fmt.Println(name)
+  }
+}
+</code></pre>
+
+<h2 id="2016-04-20">2016-04-20</h2>
+
+<ul>
+<li>sha256</li>
+</ul>
+
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;crypto/sha256&quot;
+	&quot;strconv&quot;
+)
+
+func main() {
+	for i := 1; i &lt;= 100; i++ {
+		si := strconv.Itoa(i)
+		fmt.Printf(&quot;SHA-256 : %x\n&quot;, sha256.Sum256([]byte(si)))
+	}
+}
+
+</code></pre>
+
+<h2 id="2016-04-19">2016-04-19</h2>
+
+<ul>
+<li>neovim / deoplete error
+
+<ul>
+<li><a href="https://github.com/Shougo/deoplete.nvim/issues/223">https://github.com/Shougo/deoplete.nvim/issues/223</a></li>
+</ul></li>
+</ul>
+
+<pre><code>Failed to load python3 host. You can try to see what happened by starting Neovim with the environment variable $NVIM_PYTHON_LOG_FILE set to a file and
+ opening the generated log file. Also, the host stderr will be available in Neovim log, so it may contain useful information. See also ~/.nvimlog.
+</code></pre>
+
+<p>below script fixed my issue</p>
+
+<pre><code>pip3 --no-cache-dir install -U neovim
+</code></pre>
+
+<h2 id="2016-04-18">2016-04-18</h2>
+
+<ul>
+<li>go dynamic json</li>
+</ul>
+
+<pre><code>package main
+
+import (
+  &quot;fmt&quot;
+  &quot;strconv&quot;
+  &quot;encoding/json&quot;
+)
+
+type Hoge struct {
+  Name string `json:name`
+  Tags map[string]string `json:tags`
+}
+
+func main() {
+  m := map[string]string{}
+  for i := 1; i &lt; 6; i ++ {
+    ii := strconv.Itoa(i)
+    m[&quot;tag&quot;+ii] = &quot;text&quot;+ii
+  }
+  b, _ := json.Marshal(m)
+
+  fmt.Println(m)
+  // map[tag3:text3 tag4:text4 tag5:text5 tag1:text1 tag2:text2]
+  fmt.Printf(&quot;%s\n&quot;,b)
+  // {&quot;tag1&quot;:&quot;text1&quot;,&quot;tag2&quot;:&quot;text2&quot;,&quot;tag3&quot;:&quot;text3&quot;,&quot;tag4&quot;:&quot;text4&quot;,&quot;tag5&quot;:&quot;text5&quot;}
+
+  h := Hoge{Name:&quot;hoge&quot;,Tags:m}
+  b2, _ := json.Marshal(h)
+
+  fmt.Println(h)
+  // {hoge map[tag1:text1 tag2:text2 tag3:text3 tag4:text4 tag5:text5]}
+  fmt.Printf(&quot;%s\n&quot;,string(b2))
+  // {&quot;Name&quot;:&quot;hoge&quot;,&quot;Tags&quot;:{&quot;tag1&quot;:&quot;text1&quot;,&quot;tag2&quot;:&quot;text2&quot;,&quot;tag3&quot;:&quot;text3&quot;,&quot;tag4&quot;:&quot;text4&quot;,&quot;tag5&quot;:&quot;text5&quot;}}
+
+}
+</code></pre>
+
+<ul>
+<li>create autoscaling</li>
+</ul>
+
+<h2 id="2016-04-17">2016-04-17</h2>
+
+<ul>
+<li>hubot lgtm</li>
+</ul>
+
+<p><a href="https://github.com/bouzuya/hubot-lgtm">https://github.com/bouzuya/hubot-lgtm</a></p>
+
+<h2 id="2016-04-16">2016-04-16</h2>
+
+<ul>
+<li>go-kit</li>
+</ul>
+
+<p><a href="http://peter.bourgon.org/go-kit/">http://peter.bourgon.org/go-kit/</a></p>
+
+<h2 id="2016-04-15">2016-04-15</h2>
+
+<ul>
+<li><p>security checkpoint</p>
+
+<ul>
+<li>firewall with port</li>
+<li>ssh setting /sshd_config</li>
+<li>ssl</li>
+<li><a href="https://www.ssllabs.com/ssltest/">https://www.ssllabs.com/ssltest/</a> でチェックできる</li>
+<li>response header</li>
+<li>data暗号化</li>
+<li>tool</li>
+<li>OWASP ZedAttackProxy</li>
+<li>OpenCVE</li>
+</ul></li>
+
+<li><p>mkr with jq</p></li>
+</ul>
+
+<pre><code># 無名roleを抽出
+mkr hosts | jq '.[] | { name: .name, id: .id, role: .roleFullnames  } | select(.role==null)'
+</code></pre>
+
+<h2 id="2016-04-14">2016-04-14</h2>
+
+<p>via <a href="https://github.com/golang/go/issues/14795">https://github.com/golang/go/issues/14795</a></p>
+
+<ul>
+<li>go binary failed to run on 2016.03 amazon linux ami</li>
+<li>seems to GOARCH=i386 option causes this error</li>
+</ul>
+
+<h2 id="2016-04-13">2016-04-13</h2>
+
+<p>via <a href="http://stackoverflow.com/questions/21917661/can-you-connect-to-amazon-elasticache-redis-outside-of-amazon">http://stackoverflow.com/questions/21917661/can-you-connect-to-amazon-elasticache-redis-outside-of-amazon</a></p>
+
+<ul>
+<li>want to redis-cli from local to aws elasticache(redis)</li>
+<li>ssh port forwarding do the trick</li>
+</ul>
+
+<pre><code>ssh -f -N -L6379:&lt;your redis node endpoint&gt;:6379 &lt;your EC2 node that you use to connect to redis&gt;
+</code></pre>
+
+    </div>
+    
+        <div class="nav-left">
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-04-30%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-04-30%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-04-30%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=apr%202016%20log - https%3a%2f%2fntk1000.github.io%2fpost%2f2016-04-30%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-04-30%2f&title=apr%202016%20log" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    
+    </div>
+    
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dockerfile.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-33278616-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>

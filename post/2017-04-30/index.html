@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="keyword 1, keyword 2, keyword 3" name="keywords">
+<meta content="ntk1000" name="author">
+<meta property="og:title" content="apr 2017 log - ntk1000 zlog">
+<meta property="og:url" content="https://ntk1000.github.io/post/2017-04-30/">
+<meta property="og:description" content="Your description here">
+<meta property="og:type" content="website" />
+<title>apr 2017 log | ntk1000 zlog</title>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://ntk1000.github.io/css/style.css">
+<link rel="shortcut icon" href="https://ntk1000.github.io/wave.ico">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+
+</head>
+
+<body>
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://ntk1000.github.io"><h1 class="title is-4">ntk1000 zlog</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://linkedin.com/in/jun-asano-72648213b" target="_blank">
+            <span class="icon">
+              <i class="fa fa-linkedin-square"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://ntk1000.github.io/index.xml" target="_blank">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">apr 2017 log</h1>
+    <h2 class="subtitle is-5">April 30, 2017 by ntk1000</h2>
+    
+    <div class="content">
+      
+
+<h2 id="2017-04-26">2017-04-26</h2>
+
+<p>fluentd log check via <a href="http://qiita.com/yn-misaki/items/2d9aa010c5dccd44e156">http://qiita.com/yn-misaki/items/2d9aa010c5dccd44e156</a></p>
+
+<p>fluentd pos file format</p>
+
+<pre><code>filename            read position           inode of file
+/var/log/target.log 0000000005fe73a1        0000000000046bee
+</code></pre>
+
+<p>convert inode from hexadecimal to decimal</p>
+
+<pre><code># replace lowercase with uppercase
+$ echo &quot;obase=10;ibase=16;0000000000046BEE&quot; | bc
+289774
+</code></pre>
+
+<p>check file inode</p>
+
+<pre><code>$ ls -i /var/log/target.log
+289774 /var/log/target.log
+</code></pre>
+
+<p>convert read pos from hexadecimal to decial</p>
+
+<pre><code>$ echo &quot;obase=10;ibase=16;0000000005FE73A1&quot; | bc
+100561825
+</code></pre>
+
+<p>check log from position</p>
+
+<pre><code>head -c 100561825 /var/log/target.log
+</code></pre>
+
+<h2 id="2017-04-20">2017-04-20</h2>
+
+<p>rewrite git history (rm secret files)
+via
+* <a href="http://qiita.com/go_astrayer/items/6e39d3ab16ae8094496c">http://qiita.com/go_astrayer/items/6e39d3ab16ae8094496c</a>
+* <a href="http://qiita.com/wnoguchi/items/62f5e64ef2ae14b4f0ee">http://qiita.com/wnoguchi/items/62f5e64ef2ae14b4f0ee</a></p>
+
+<pre><code>
+# remove 
+git filter-branch --tree-filter &quot;rm -f [/path/to/file]&quot; HEAD
+git filter-branch --tree-filter &quot;rm -f -r [/path/to/directory] &quot; HEAD
+
+# gc
+git gc --aggressive --prune=now
+
+# push
+git push -f
+
+</code></pre>
+
+<p>nginx gzip on via <a href="http://qiita.com/cubicdaiya/items/2763ba2240476ab1d9dd">http://qiita.com/cubicdaiya/items/2763ba2240476ab1d9dd</a></p>
+
+<pre><code>gzip on;
+# add Content-Type with `gzip_types` directive, cause `gzip on` directive only compress text/html
+gzip_types text/css text/javascript;
+</code></pre>
+
+<h2 id="2017-04-21">2017-04-21</h2>
+
+<p>about network</p>
+
+<ul>
+<li>/etc/sysconfig/network-scripts/ifcfg-eth0</li>
+</ul>
+
+<pre><code>固定IPアドレスの場合。
+--------------------------------
+DEVICE=eth0
+BOOTPROTO=static
+BROADCAST=192.168.1.255
+HWADDR=00:1E:90:AC:94:6A
+IPADDR=192.168.1.11
+NETMASK=255.255.255.0
+NETWORK=192.168.1.0
+ONBOOT=yes
+--------------------------------
+
+
+DEVICE・・・デバイス名eth0 eth1等を設定
+BOOTPROTO・・・固定IPの場合:none,static DHCPでIP取得の場合:dhcpと設定
+BROADCAST・・・ブロードキャストアドレスの設定
+HWADDR・・・NICのMACアドレスを設定
+IPADDR・・・IPアドレスの指定
+NETMASK・・・サブネットマスクの設定
+NETWORK・・・ネットワークアドレスの設定
+ONBOOT・・・起動時に有効にするかどうか(yes/no) 
+
+</code></pre>
+
+<h2 id="2017-04-05">2017-04-05</h2>
+
+<p>覚えておきたいlsコマンドのオプション15選
+* -aオプション：すべて表示
+* -lオプション：ファイルの詳細も表示する
+* -1オプション：リストを縦に並べる
+* -rオプション：逆順で表示する
+* -tオプション：更新時間順に並べる
+* -Sオプション：ファイルサイズ順でソートする
+* -Xオプション：ファイルを拡張子ごとにまとめる
+* -Rオプション：ディレクトリ内容を再帰的に表示する
+* &ndash;full-timeオプション：タイムスタンプの詳細を表示する
+* -mオプション：ファイル名をカンマで区切って表示する
+* -hオプション：単位を読みやすい形式で表示する
+* -kオプション：キロバイト単位で表示する
+* -iオプション：ファイル名の左にi-node番号を表示する
+* -Fオプション：情報の付加
+* &ndash;helpオプション：ヘルプの表示</p>
+
+    </div>
+    
+        <div class="nav-left">
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-04-30%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-04-30%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-04-30%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=apr%202017%20log - https%3a%2f%2fntk1000.github.io%2fpost%2f2017-04-30%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-04-30%2f&title=apr%202017%20log" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    
+    </div>
+    
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dockerfile.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-33278616-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>

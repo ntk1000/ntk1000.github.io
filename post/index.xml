@@ -6,10 +6,352 @@
     <description>Recent content in Posts on ntk1000 zlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 14 Jan 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 May 2018 21:38:22 +0900</lastBuildDate>
     
 	<atom:link href="https://ntk1000.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>re create blog</title>
+      <link>https://ntk1000.github.io/post/2018-05-02-re-create-blog/</link>
+      <pubDate>Wed, 02 May 2018 21:38:22 +0900</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2018-05-02-re-create-blog/</guid>
+      <description>hugoでgithub.ioを作り直した
+themeは思い切りsimpleなこれにした
+しばらく記録してなかったのでまたぽちぽち更新していこうと思う</description>
+    </item>
+    
+    <item>
+      <title>xxxxxxxxxxxx</title>
+      <link>https://ntk1000.github.io/post/2017-10-06/</link>
+      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2017-10-06/</guid>
+      <description>replace string under directory via sed
+find . -type f -print | xargs sed -i -e &#39;s/before/after/g&#39;  vim changelog add .xshrc this function
+function zs() { LOG=/path/to/logfile sed -i -e &amp;quot;4i ## `date +&#39;%Y-%m-%d&#39;`&amp;quot; $LOG | vim $LOG }  </description>
+    </item>
+    
+    <item>
+      <title>table diff</title>
+      <link>https://ntk1000.github.io/post/2017-10-05/</link>
+      <pubDate>Thu, 05 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2017-10-05/</guid>
+      <description> table diff for mysql via http://d.hatena.ne.jp/CAMUS/20060111/1136984749  same table layout want to check key exists only on one side  SELECT KEY FROM ( SELECT KEY FROM TBL_A UNION ALL SELECT KEY FROM TBL_B ) GROUP BY KEY HAVING COUNT(*) = 1   want to check all columns differs one another = table diff  SELECT KEY FROM ( SELECT * FROM TBL_A UNION SELECT * FROM TBL_B ) GROUP BY KEY HAVING COUNT(*) = 2  </description>
+    </item>
+    
+    <item>
+      <title>terraform loop</title>
+      <link>https://ntk1000.github.io/post/2017-05-02/</link>
+      <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2017-05-02/</guid>
+      <description>resource &amp;quot;aws_ecr_repository&amp;quot; &amp;quot;example&amp;quot; { count = &amp;quot;${var.repos_count}&amp;quot; name = &amp;quot;${element(var.repos,count.index)}&amp;quot; } variable &amp;quot;repos_count&amp;quot; { default = 3 } variable &amp;quot;repos&amp;quot; { default = [&amp;quot;ex1&amp;quot;,&amp;quot;ex2&amp;quot;,&amp;quot;ex3&amp;quot;] }  </description>
+    </item>
+    
+    <item>
+      <title>apr 2017 log</title>
+      <link>https://ntk1000.github.io/post/2017-04-30/</link>
+      <pubDate>Sun, 30 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2017-04-30/</guid>
+      <description>2017-04-26 fluentd log check via http://qiita.com/yn-misaki/items/2d9aa010c5dccd44e156
+fluentd pos file format
+filename read position inode of file /var/log/target.log 0000000005fe73a1 0000000000046bee  convert inode from hexadecimal to decimal
+# replace lowercase with uppercase $ echo &amp;quot;obase=10;ibase=16;0000000000046BEE&amp;quot; | bc 289774  check file inode
+$ ls -i /var/log/target.log 289774 /var/log/target.log  convert read pos from hexadecimal to decial
+$ echo &amp;quot;obase=10;ibase=16;0000000005FE73A1&amp;quot; | bc 100561825  check log from position
+head -c 100561825 /var/log/target.</description>
+    </item>
+    
+    <item>
+      <title>feb 2017 log</title>
+      <link>https://ntk1000.github.io/post/2017-02-27/</link>
+      <pubDate>Mon, 27 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2017-02-27/</guid>
+      <description> 2017-02-20 docker (for mac) gc
+docker rm $(docker ps -q -f &#39;status=exited&#39;) docker rmi $(docker images -q -f &amp;quot;dangling=true&amp;quot;)  2017-02-09 curl only shows headers via http://te2u.hatenablog.jp/entry/2015/08/04/001554
+curl -s -D - http://example.com -o /dev/null  -s : silent mode -D : show headers -o : out responcebody to&amp;hellip;
+2017-02-07 rm under s3 bucket
+aws s3 rm s3://bucket-name/ --recursive  </description>
+    </item>
+    
+    <item>
+      <title>jan 2017 log</title>
+      <link>https://ntk1000.github.io/post/2017-01-31/</link>
+      <pubDate>Tue, 31 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2017-01-31/</guid>
+      <description> 2017-01-24 about td-agent
+# conf dry-run sudo td-agent --dry-run -c /etc/td-agent/td-agent.conf # init sudo /etc/init.d/td-agent status (etc.) # log sudo tail -f /var/log/td-agent/td-agent.log  2017-01-23 log location of ec2 user-data
+less /var/log/cloud-init-output.log  2017-01-12 sudo td-agent-gem install fluent-plugin-rewrite-tag-filter sudo td-agent-gem install fluent-plugin-slack  2017-01-11 via * https://coreos.com/os/docs/latest/scheduling-tasks-with-systemd-timers.html * http://stackoverflow.com/questions/29086918/docker-compose-to-coreos * http://qiita.com/TakiTake@github/items/b66aeb1eb266f97fafe5
+auto start docker-compose on coreos
+sudo coreos-cloudinit --from-file /path/to/cloud-config.yml  </description>
+    </item>
+    
+    <item>
+      <title>dec 2016 log</title>
+      <link>https://ntk1000.github.io/post/2016-12-31/</link>
+      <pubDate>Sat, 31 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-12-31/</guid>
+      <description>2016-12-12 via http://nekop.hatenablog.com/entry/2015/08/21/160436 docker clean-up w/o error
+docker ps -q -f status=exited | xargs --no-run-if-empty docker rm docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi  2016-12-08 exclude commented out and blank line
+grep -v -e &#39;#&#39; -e &#39;^$&#39; ./httpd.conf  wc under multi dir/files
+wc -l ./*/*.conf | sort | $PAGER  2016-12-07 show ruby configure options
+ruby -r rbconfig -e &#39;puts RbConfig::CONFIG[&amp;quot;configure_args&amp;quot;]&#39;  2016-12-01 destroy specific target with tf file via terraform</description>
+    </item>
+    
+    <item>
+      <title>nov 2016 log</title>
+      <link>https://ntk1000.github.io/post/2016-11-30/</link>
+      <pubDate>Wed, 30 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-11-30/</guid>
+      <description>2016-11-18 erase specific git file/directory
+file $ git filter-branch -f --index-filter &#39;git rm --cached --ignore-unmatch filename&#39; HEAD directory $ git filter-branch -f --index-filter &#39;git rm -rf --cached --ignore-unmatch dirname&#39; HEAD push $ git push --force origin branch  2016-11-01 ! not for production docker-compose on coreos via http://www.ericluwj.com/2015/10/20/installing-docker-compose-in-coreos.html * sudo su - * mkdir -p /opt/bin * curl -L https://github.com/docker/compose/releases/download/X.Y.Z/docker-compose-`uname -s-uname -m` &amp;gt; /opt/bin/docker-compose * chmod +x /opt/bin/docker-compose * that&amp;rsquo;s it</description>
+    </item>
+    
+    <item>
+      <title>oct 2016 log</title>
+      <link>https://ntk1000.github.io/post/2016-10-31/</link>
+      <pubDate>Mon, 31 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-10-31/</guid>
+      <description>2016-10-28 how 2 get image via aws ecr on docker / docker-compose?
+ aws ecr get-login command provides docker login to aws ecr sample shell as follows  # check credentails : &amp;quot;${AWS_ACCESS_KEY_ID?env empty}&amp;quot; : &amp;quot;${AWS_SECRET_ACCESS_KEY?env empty}&amp;quot; : &amp;quot;${AWS_DEFAULT_REGION?env empty}&amp;quot; echo &amp;quot;docker login via aws ecr command&amp;quot; #eval &amp;quot;$(docker-machine env default)&amp;quot; $(aws ecr get-login --region $AWS_DEFAULT_REGION)  after docker login passes, docker / docker-compose can handle docker images on aws ecr.</description>
+    </item>
+    
+    <item>
+      <title>aug 2016 log</title>
+      <link>https://ntk1000.github.io/post/2016-08-31/</link>
+      <pubDate>Wed, 31 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-08-31/</guid>
+      <description> 2016-08-04 docker entrypoint override
+ overrider with &amp;ndash;entrypoint flag command with end parameter  $ docker run -it --entrypoint /bin/consul gliderlabs/consul-server version Consul v0.6.4 ...  </description>
+    </item>
+    
+    <item>
+      <title>jul 2016 log</title>
+      <link>https://ntk1000.github.io/post/2016-07-31/</link>
+      <pubDate>Sun, 31 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-07-31/</guid>
+      <description> 2016-07-15 rbenv init
+eval &amp;quot;$(rbenv init -)&amp;quot; rbenv rehash gem install hogehoge  </description>
+    </item>
+    
+    <item>
+      <title>jun 2016 log</title>
+      <link>https://ntk1000.github.io/post/2016-06-30/</link>
+      <pubDate>Thu, 30 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-06-30/</guid>
+      <description>2016-06-27 personal memo
+ https://talks.golang.org/2012/10things.slide https://www.appneta.com/blog/automated-testing-with-docker/ http://developers.linecorp.com/blog/ja/?p=3392 https://thepracticalsysadmin.com/ecs-cluster-turnup-with-coreos-and-terraform/ http://postd.cc/eight-docker-development-patterns/ http://yut.hatenablog.com/entry/20130617/1371425713  2016-06-07 set timezone and ecs-agent to coreos
+ userdata  #cloud-config coreos: units: - name: settimezone.service command: start content: | [Unit] Description=Set Timezone [Service] ExecStart=/usr/bin/timedatectl set-timezone Asia/Tokyo RemainAfterExit=yes Type=oneshot - name: amazon-ecs-agent.service command: start runtime: true content: | [Unit] Description=AWS ECS Agent Documentation=https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ Requires=docker.socket After=docker.socket [Service] Environment=ECS_CLUSTER=your-ecs-cluster-name Environment=ECS_LOGLEVEL=info Environment=ECS_VERSION=latest Restart=on-failure RestartSec=30 RestartPreventExitStatus=5 SyslogIdentifier=ecs-agent ExecStartPre=-/bin/mkdir -p /var/log/ecs /var/ecs-data /etc/ecs ExecStartPre=-/usr/bin/touch /etc/ecs/ecs.</description>
+    </item>
+    
+    <item>
+      <title>may 2016 log</title>
+      <link>https://ntk1000.github.io/post/2016-05-31/</link>
+      <pubDate>Tue, 31 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-05-31/</guid>
+      <description>2016-05-27 slack time signal
+/remind #channel to morning standup at 10am every weekday /remind #channel to evening standup at 5pm every weekday /remind list  2016-05-24 install redis-cli on ec2
+$ sudo yum install -y gcc $ wget http://download.redis.io/redis-stable.tar.gz $ tar xvzf redis-stable.tar.gz $ cd redis-stable $ make $ src/redis-cli -h %elasticacheendpoint% -p 6379  2016-05-17 setting timezone at alpine linux on docker
+ FROM gliderlabs/alpine:latest RUN apk --no-cache add tzdata &amp;amp;&amp;amp; \ cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime &amp;amp;&amp;amp; \ apk del tzdata  2016-05-11 mysql(RDS or Aurora) dump restore from local file</description>
+    </item>
+    
+    <item>
+      <title>apr 2016 log</title>
+      <link>https://ntk1000.github.io/post/2016-04-30/</link>
+      <pubDate>Sat, 30 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-04-30/</guid>
+      <description>2016-04-28 docker network time out
+docker-machine restart default eval $(docker-machine env default)  2016-04-27 http://yuuki.hatenablog.com/entry/diy-container
+2016-04-26 https://github.com/progrium/entrykit
+2016-04-25 sick sick
+2016-04-24 i&amp;rsquo;m sick
+2016-04-23 https://play.golang.org/p/TYOd9ELo2m
+https://play.golang.org/p/Xs2SQ59gez
+http://play.golang.org/p/VdKMLKMYse
+http://play.golang.org/p/sCcfzFuzqR
+https://play.golang.org/p/tlaYWTKXGr
+https://play.golang.org/p/DoBYGQruo6
+2016-04-22  golang testing
+ via https://medium.com/@benbjohnson/structuring-tests-in-go-46ddee7a25c#.x9lf1gida no frameworks &amp;ldquo;underscore test&amp;rdquo; file test-specific types * https://speakerdeck.com/mitchellh/advanced-testing-with-go is also fine slide for testing  i love test
+  2016-04-21 package main import( &amp;quot;fmt&amp;quot; &amp;quot;reflect&amp;quot; ) // Data Model type User struct { Id int Name string Origin string Query func() Tags map[string]string Fields []string } func main(){ list := GetAttrName(&amp;amp;User{}) // slice with .</description>
+    </item>
+    
+    <item>
+      <title>websocket in golang memo</title>
+      <link>https://ntk1000.github.io/post/2016-02-18-websocketingo/</link>
+      <pubDate>Thu, 18 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-02-18-websocketingo/</guid>
+      <description>use gorilla websocket
+see https://github.com/gorilla/websocket#gorilla-websocket-compared-with-other-packages</description>
+    </item>
+    
+    <item>
+      <title>session cookie memo</title>
+      <link>https://ntk1000.github.io/post/2016-02-12-sessioncookiememo1/</link>
+      <pubDate>Fri, 12 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-02-12-sessioncookiememo1/</guid>
+      <description>development nginx -&amp;gt; redis(cache) -&amp;gt; webapp
+production loadbalancer -&amp;gt; nginx -&amp;gt; redis(cache) -&amp;gt; webapp</description>
+    </item>
+    
+    <item>
+      <title>docker memo</title>
+      <link>https://ntk1000.github.io/post/2016-02-11-dockermemo1/</link>
+      <pubDate>Thu, 11 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-02-11-dockermemo1/</guid>
+      <description>usually i&amp;rsquo;m confused which docker command to use&amp;hellip;
+ docker : command for docker container docker build -f /path/to/Dockerfile : build docker image via Dockerfile docker-machine : command for host machine of docker docker-compose : set up containers via docker-compose.yml   # build image via Dockerfile &amp;gt; docker build -t mysql:5.6 . (--no-cache=true when dont want to use existing cache) # list existing images &amp;gt; docker images REPOSITORY TAG IMAGE ID CREATED SIZE mysql 5.</description>
+    </item>
+    
+    <item>
+      <title>12factorapp</title>
+      <link>https://ntk1000.github.io/post/2016-02-04-12factorapp/</link>
+      <pubDate>Thu, 04 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-02-04-12factorapp/</guid>
+      <description>12 factor app
+ コードベース  コードベースとアプリケーションは常に1対1、デプロイは環境(開発、ステージング、本番等)毎に複数存在 共通のコードはライブラリ化する  依存関係  依存関係の明示と分離 ex. package.json, gem システム固有の暗黙的なツール(curlなど)を前提にせず、必要な場合はvendor appとして内包する  設定  デプロイ毎に異なる設定をコード内に格納するのでなく、環境変数に格納する ソースをgithub等、ossとして公開状態で管理するのであればcredentialは絶対コード内に格納してはいけない credential, db接続情報、変動があるものは環境変数で読み込む形でコード化する  バックエンドサービス  DB, Storage, SMTP等デタッチアタッチ可能なリソースとして扱う すべてURLで扱う  ビルド、リリース、ラン  それぞれのステージを厳密に分離 ビルド-&amp;gt;リリース-&amp;gt;ラン ビルド: コードを実行可能な形にする、依存関係の整理、コンパイルなど リリース: ビルドとデプロイに関する設定の整理、サーバーで実行できる状態かつロールバック機能を担保する ex.fabric, capistrano ラン: サーバー上でアプリを起動する、実行中のコードを変更することはしてはいけない  プロセス  ステートレス、シェアードナッシングなプロセスとしてアプリを実行する 状態はDBなどのサービスに持たせる memchacheやredisでのキャッシュ管理  ポートバインディング  Webアプリをポートにバインドすることでhttpサービスとして公開する 1 container 1 service  並行性  プロセスモデル採用によるスケールアウトの実現 スレッドではなく、プロセスを用いてスケールアウトする 各プロセスが内部でスレッドやasync/eventedを用いて多重化するのはok  廃棄容易性  高速な起動とグレースフルシャットダウンの両立により堅牢性を高める 起動時間を最小化することによりリリースやスケールアウト時のアジリティを高める プロセス終了時の後処理をきちんとする、新しいリクエストを受けるのをやめ、現在進行している処理は正常に完了させる 冪等性を担保した設計 リクエストの接続が失われても裏で再接続できるような設計  開発本番一致  開発/本番環境のギャップを小さく保つ 時間のギャップ: リリース対象のコードは数時間・数分後にはデプロイ可能な状態とする 人材のギャップ: リリース対象コードを書いた開発者がデプロイ、リリース後の挙動を見守る ツールのギャップ: 開発/本番環境をできるだけ一致させる(利用スタックの統一)  ログ  ログをイベントストリームとして扱う アプリはstdoutにログを吐くだけ 実行中のアプリの挙動を可視化、アーカイブ化できるようなログルーターの利用(ex.</description>
+    </item>
+    
+    <item>
+      <title>memo</title>
+      <link>https://ntk1000.github.io/post/2016-02-02-febmemo/</link>
+      <pubDate>Tue, 02 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-02-02-febmemo/</guid>
+      <description> done with docker ecosystem  create each container via Dockerfile set every containers up and connect with port via docker-compose.yml  think about hashicorp tools  Vagrant or Packer alternate with Dockerfile Terraform alternate with docker-compose  </description>
+    </item>
+    
+    <item>
+      <title>jan 2016 kpt</title>
+      <link>https://ntk1000.github.io/post/2016-01-30-jan2016/</link>
+      <pubDate>Sat, 30 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2016-01-30-jan2016/</guid>
+      <description> keep  coding every day start with tiny example RTFM aka &amp;ldquo;read the xxxx manual&amp;rdquo;, read api doc  problem  not enough time! otemachi building is like a maze.. don&amp;rsquo;t waste time.  try  building &amp;ldquo;real&amp;rdquo; micro service stay streaking with github  have the courage to follow your heart and intuition. they somehow already know what you truly want to become.  </description>
+    </item>
+    
+    <item>
+      <title>agile0</title>
+      <link>https://ntk1000.github.io/post/2015-04-02-agile0/</link>
+      <pubDate>Thu, 02 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2015-04-02-agile0/</guid>
+      <description>agile samurai memo 0 大きなタスクを小さくする 振り返り ベロシティの計測（タスクがどれくらいで実現できたか）できてない タスク、要望、チケット管理したほうがよいと思った 要求内容変わるので履歴を残したい 検索性を高める 情報を1つの箇所にまとめる 社内redmine、改造できないかた自分でホストしたほうがよいのでは redmineとpivotaltrackerの違い？ redmineとtrello比較</description>
+    </item>
+    
+    <item>
+      <title>dotfiles</title>
+      <link>https://ntk1000.github.io/post/2015-02-26-dotfiles/</link>
+      <pubDate>Fri, 06 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2015-02-26-dotfiles/</guid>
+      <description>vimなど、色々設定行い、設定をdotfilesレポジトリに移動した</description>
+    </item>
+    
+    <item>
+      <title>sic</title>
+      <link>https://ntk1000.github.io/post/2015-02-03-sic/</link>
+      <pubDate>Tue, 03 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2015-02-03-sic/</guid>
+      <description>週末から風邪、体調よくない　喉痛い</description>
+    </item>
+    
+    <item>
+      <title>test2</title>
+      <link>https://ntk1000.github.io/post/2015-01-30-test2/</link>
+      <pubDate>Fri, 30 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2015-01-30-test2/</guid>
+      <description>testの話
+悩んでいる
+※雪or雨の日はこどもを保育園送るだけで疲れてしまう　体力ない</description>
+    </item>
+    
+    <item>
+      <title>changefont</title>
+      <link>https://ntk1000.github.io/post/2015-01-29-changefont/</link>
+      <pubDate>Thu, 29 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2015-01-29-changefont/</guid>
+      <description>font入れてみた
+vim の設定
+ set guifont=Ricty_Diminished_Discord:h9  </description>
+    </item>
+    
+    <item>
+      <title>bd33</title>
+      <link>https://ntk1000.github.io/post/2015-01-22-bd33/</link>
+      <pubDate>Thu, 22 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2015-01-22-bd33/</guid>
+      <description>33
+https://www.youtube.com/watch?v=9fWipOMTc34</description>
+    </item>
+    
+    <item>
+      <title>WebDriver.js</title>
+      <link>https://ntk1000.github.io/post/2015-01-21-webdriversample/</link>
+      <pubDate>Wed, 21 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2015-01-21-webdriversample/</guid>
+      <description>この記事を参考にweb自動化の練習
+Selenium Server
+start-selenium  実行
+node webdrivertest.js   ﻿var webdriver = require(&#39;selenium-webdriver&#39;); var By = webdriver.By; var SeleniumServer = require(&#39;selenium-webdriver/remote&#39;).SeleniumServer; var pathToSeleniumJar = &#39;C:\\Program Files\\nodejs\\node_modules\\selenium-standalone\\.selenium\\2.44.0\\server.jar&#39; var server = new SeleniumServer(pathToSeleniumJar,{ port : 4444}); server.start(); var driver = new webdriver .Builder() .usingServer(server.address()) .withCapabilities(webdriver.Capabilities.chrome()) .build(); var $ = driver.findElement.bind(driver); driver.get(&#39;url&#39;); // Login $(By.name(&#39;LoginID&#39;)).sendKeys(&#39;id&#39;); $(By.name(&#39;LoginPassword&#39;)).sendKeys(&#39;passwd&#39;); $(By.name(&#39;btnLogin&#39;)).click(); // var timeoutMSec = 2000; driver .wait(webdriver.until.elementLocated(By.name(&#39;buttonCompanySelect&#39;)), timeoutMSec) .then(function() { console.log(&#39;login success&#39;); $(By.id(&#39;120&#39;)).click(); $(By.id(&#39;buttonCompanySelect&#39;)).click(); driver .</description>
+    </item>
+    
+    <item>
+      <title>markdown error</title>
+      <link>https://ntk1000.github.io/post/2015-01-17-test/</link>
+      <pubDate>Sat, 17 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2015-01-17-test/</guid>
+      <description>ちゃんと更新されないのでテスト
+markdownのエラーだったので従って修正した
+_config.yml fileを
+markdown: kramdown  変えた
+code syntaxが~に変わるので違和感がある</description>
+    </item>
+    
+    <item>
+      <title>c#</title>
+      <link>https://ntk1000.github.io/post/2015-01-16-csharpetc/</link>
+      <pubDate>Fri, 16 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2015-01-16-csharpetc/</guid>
+      <description>Regex stackoverflowで見たコードの詳細を調べる
+コード
+string s = &amp;quot;test [4df] test [5y&amp;quot; + Environment.NewLine + &amp;quot;u] test [6nf]&amp;quot;; ICollection&amp;lt;string&amp;gt; matches = Regex.Matches(s.Replace(Environment.NewLine, &amp;quot;&amp;quot;), @&amp;quot;\[([^]]*)\]&amp;quot;) .Cast&amp;lt;Match&amp;gt;() .Select(x =&amp;gt; x.Groups[1].Value) .ToList(); foreach (string match in matches) Console.WriteLine(match);  正規表現の意味
+ \[ : Match a literal [ ( : Start a new group, match.Groups[1] [^]] : Match any character except ] * : 0 or more of the above ) : Close the group \] : Literal ]  自分の場合やりたかったのは 「さむい(小並感)」みたいな文字列から「小並感」を抽出したかった あるいは「ほほほ(へへへ(ふふふ))」から「へへへ(ふふふ)」を抽出</description>
+    </item>
+    
+    <item>
+      <title>thoughts</title>
+      <link>https://ntk1000.github.io/post/2015-01-15-tvchild/</link>
+      <pubDate>Thu, 15 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2015-01-15-tvchild/</guid>
+      <description> TVがないことがこどもに与える影響 流行を追いかける必要があるのか 読書の習慣 こどもが友達から仲間はずれになった時にどうするか こどもに対する態度 目を見て会話をする、スマホ見ない  </description>
+    </item>
     
     <item>
       <title>init</title>
@@ -24,181 +366,6 @@ vimのバイナリが原因と思って日本語用のvimに入れ替えたい�
 vimrc  開いたファイルのencoding表示する設定   set laststatus=2 set statusline=%&amp;lt;%f\ %m\ %r%h%w%{&#39;[&#39;.(&amp;amp;fenc!=&#39;&#39;?&amp;amp;fenc:&amp;amp;enc).&#39;][&#39;.&amp;amp;ff.&#39;]&#39;}%=\ (%v,%l)/%L%8P\  Atom Atomを入れなおして使っている
 memo 昨日のトラブル時に外国のエンジニアが使っていたツール
  webex pexpect  </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://ntk1000.github.io/post/readme/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/readme/</guid>
-      <description>zlog loggin daily activity
-2017-10-06 replace string under directory via sed
-find . -type f -print | xargs sed -i -e &#39;s/before/after/g&#39;  vim changelog add .xshrc this function
-function zs() { LOG=/path/to/logfile sed -i -e &amp;quot;4i ## `date +&#39;%Y-%m-%d&#39;`&amp;quot; $LOG | vim $LOG }  2017-10-05 table diff for mysql via http://d.hatena.ne.jp/CAMUS/20060111/1136984749  same table layout want to check key exists only on one side  SELECT KEY FROM ( SELECT KEY FROM TBL_A UNION ALL SELECT KEY FROM TBL_B ) GROUP BY KEY HAVING COUNT(*) = 1   want to check all columns differs one another = table diff  SELECT KEY FROM ( SELECT * FROM TBL_A UNION SELECT * FROM TBL_B ) GROUP BY KEY HAVING COUNT(*) = 2  2017-05-02 terraform loop</description>
-    </item>
-    
-    <item>
-      <title>12factorapp</title>
-      <link>https://ntk1000.github.io/post/2016-02-04-12factorapp/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2016-02-04-12factorapp/</guid>
-      <description>12 factor app
- コードベース  コードベースとアプリケーションは常に1対1、デプロイは環境(開発、ステージング、本番等)毎に複数存在 共通のコードはライブラリ化する  依存関係  依存関係の明示と分離 ex. package.json, gem システム固有の暗黙的なツール(curlなど)を前提にせず、必要な場合はvendor appとして内包する  設定  デプロイ毎に異なる設定をコード内に格納するのでなく、環境変数に格納する ソースをgithub等、ossとして公開状態で管理するのであればcredentialは絶対コード内に格納してはいけない credential, db接続情報、変動があるものは環境変数で読み込む形でコード化する  バックエンドサービス  DB, Storage, SMTP等デタッチアタッチ可能なリソースとして扱う すべてURLで扱う  ビルド、リリース、ラン  それぞれのステージを厳密に分離 ビルド-&amp;gt;リリース-&amp;gt;ラン ビルド: コードを実行可能な形にする、依存関係の整理、コンパイルなど リリース: ビルドとデプロイに関する設定の整理、サーバーで実行できる状態かつロールバック機能を担保する ex.fabric, capistrano ラン: サーバー上でアプリを起動する、実行中のコードを変更することはしてはいけない  プロセス  ステートレス、シェアードナッシングなプロセスとしてアプリを実行する 状態はDBなどのサービスに持たせる memchacheやredisでのキャッシュ管理  ポートバインディング  Webアプリをポートにバインドすることでhttpサービスとして公開する 1 container 1 service  並行性  プロセスモデル採用によるスケールアウトの実現 スレッドではなく、プロセスを用いてスケールアウトする 各プロセスが内部でスレッドやasync/eventedを用いて多重化するのはok  廃棄容易性  高速な起動とグレースフルシャットダウンの両立により堅牢性を高める 起動時間を最小化することによりリリースやスケールアウト時のアジリティを高める プロセス終了時の後処理をきちんとする、新しいリクエストを受けるのをやめ、現在進行している処理は正常に完了させる 冪等性を担保した設計 リクエストの接続が失われても裏で再接続できるような設計  開発本番一致  開発/本番環境のギャップを小さく保つ 時間のギャップ: リリース対象のコードは数時間・数分後にはデプロイ可能な状態とする 人材のギャップ: リリース対象コードを書いた開発者がデプロイ、リリース後の挙動を見守る ツールのギャップ: 開発/本番環境をできるだけ一致させる(利用スタックの統一)  ログ  ログをイベントストリームとして扱う アプリはstdoutにログを吐くだけ 実行中のアプリの挙動を可視化、アーカイブ化できるようなログルーターの利用(ex.</description>
-    </item>
-    
-    <item>
-      <title>WebDriver.js</title>
-      <link>https://ntk1000.github.io/post/2015-01-21-webdriversample/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2015-01-21-webdriversample/</guid>
-      <description>この記事を参考にweb自動化の練習
-Selenium Server
-start-selenium  実行
-node webdrivertest.js   ﻿var webdriver = require(&#39;selenium-webdriver&#39;); var By = webdriver.By; var SeleniumServer = require(&#39;selenium-webdriver/remote&#39;).SeleniumServer; var pathToSeleniumJar = &#39;C:\\Program Files\\nodejs\\node_modules\\selenium-standalone\\.selenium\\2.44.0\\server.jar&#39; var server = new SeleniumServer(pathToSeleniumJar,{ port : 4444}); server.start(); var driver = new webdriver .Builder() .usingServer(server.address()) .withCapabilities(webdriver.Capabilities.chrome()) .build(); var $ = driver.findElement.bind(driver); driver.get(&#39;url&#39;); // Login $(By.name(&#39;LoginID&#39;)).sendKeys(&#39;id&#39;); $(By.name(&#39;LoginPassword&#39;)).sendKeys(&#39;passwd&#39;); $(By.name(&#39;btnLogin&#39;)).click(); // var timeoutMSec = 2000; driver .wait(webdriver.until.elementLocated(By.name(&#39;buttonCompanySelect&#39;)), timeoutMSec) .then(function() { console.log(&#39;login success&#39;); $(By.id(&#39;120&#39;)).click(); $(By.id(&#39;buttonCompanySelect&#39;)).click(); driver .</description>
-    </item>
-    
-    <item>
-      <title>agile0</title>
-      <link>https://ntk1000.github.io/post/2015-04-02-agile0/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2015-04-02-agile0/</guid>
-      <description>agile samurai memo 0 大きなタスクを小さくする 振り返り ベロシティの計測（タスクがどれくらいで実現できたか）できてない タスク、要望、チケット管理したほうがよいと思った 要求内容変わるので履歴を残したい 検索性を高める 情報を1つの箇所にまとめる 社内redmine、改造できないかた自分でホストしたほうがよいのでは redmineとpivotaltrackerの違い？ redmineとtrello比較</description>
-    </item>
-    
-    <item>
-      <title>bd33</title>
-      <link>https://ntk1000.github.io/post/2015-01-22-bd33/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2015-01-22-bd33/</guid>
-      <description>33
-https://www.youtube.com/watch?v=9fWipOMTc34</description>
-    </item>
-    
-    <item>
-      <title>blog更新</title>
-      <link>https://ntk1000.github.io/post/2015-01-17-test/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2015-01-17-test/</guid>
-      <description>ちゃんと更新されないのでテスト
-markdownのエラーだったので従って修正した
-_config.yml fileを
-markdown: kramdown  変えた
-code syntaxが~に変わるので違和感がある</description>
-    </item>
-    
-    <item>
-      <title>changefont</title>
-      <link>https://ntk1000.github.io/post/2015-01-29-changefont/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2015-01-29-changefont/</guid>
-      <description>font入れてみた
-vim の設定
- set guifont=Ricty_Diminished_Discord:h9  </description>
-    </item>
-    
-    <item>
-      <title>day3</title>
-      <link>https://ntk1000.github.io/post/2015-01-16-csharpetc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2015-01-16-csharpetc/</guid>
-      <description>Regex stackoverflowで見たコードの詳細を調べる
-コード
-string s = &amp;quot;test [4df] test [5y&amp;quot; + Environment.NewLine + &amp;quot;u] test [6nf]&amp;quot;; ICollection&amp;lt;string&amp;gt; matches = Regex.Matches(s.Replace(Environment.NewLine, &amp;quot;&amp;quot;), @&amp;quot;\[([^]]*)\]&amp;quot;) .Cast&amp;lt;Match&amp;gt;() .Select(x =&amp;gt; x.Groups[1].Value) .ToList(); foreach (string match in matches) Console.WriteLine(match);  正規表現の意味
- \[ : Match a literal [ ( : Start a new group, match.Groups[1] [^]] : Match any character except ] * : 0 or more of the above ) : Close the group \] : Literal ]  自分の場合やりたかったのは 「さむい(小並感)」みたいな文字列から「小並感」を抽出したかった あるいは「ほほほ(へへへ(ふふふ))」から「へへへ(ふふふ)」を抽出</description>
-    </item>
-    
-    <item>
-      <title>dotfiles</title>
-      <link>https://ntk1000.github.io/post/2015-02-26-dotfiles/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2015-02-26-dotfiles/</guid>
-      <description>vimなど、色々設定行い、設定をdotfilesレポジトリに移動した</description>
-    </item>
-    
-    <item>
-      <title>feb 2016 docker memo</title>
-      <link>https://ntk1000.github.io/post/2016-02-11-dockermemo1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2016-02-11-dockermemo1/</guid>
-      <description>usually i&amp;rsquo;m confused which docker command to use&amp;hellip;
- docker : command for docker container docker build -f /path/to/Dockerfile : build docker image via Dockerfile docker-machine : command for host machine of docker docker-compose : set up containers via docker-compose.yml   # build image via Dockerfile &amp;gt; docker build -t mysql:5.6 . (--no-cache=true when dont want to use existing cache) # list existing images &amp;gt; docker images REPOSITORY TAG IMAGE ID CREATED SIZE mysql 5.</description>
-    </item>
-    
-    <item>
-      <title>feb 2016 memo</title>
-      <link>https://ntk1000.github.io/post/2016-02-02-febmemo/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2016-02-02-febmemo/</guid>
-      <description> done with docker ecosystem  create each container via Dockerfile set every containers up and connect with port via docker-compose.yml  think about hashicorp tools  Vagrant or Packer alternate with Dockerfile Terraform alternate with docker-compose  </description>
-    </item>
-    
-    <item>
-      <title>feb 2016 session cookie memo</title>
-      <link>https://ntk1000.github.io/post/2016-02-12-sessioncookiememo1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2016-02-12-sessioncookiememo1/</guid>
-      <description>development nginx -&amp;gt; redis(cache) -&amp;gt; webapp
-production loadbalancer -&amp;gt; nginx -&amp;gt; redis(cache) -&amp;gt; webapp</description>
-    </item>
-    
-    <item>
-      <title>feb 2016 websocket in golang memo</title>
-      <link>https://ntk1000.github.io/post/2016-02-18-websocketingo/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2016-02-18-websocketingo/</guid>
-      <description>use gorilla websocket
-see https://github.com/gorilla/websocket#gorilla-websocket-compared-with-other-packages</description>
-    </item>
-    
-    <item>
-      <title>jan 2016 kpt</title>
-      <link>https://ntk1000.github.io/post/2016-01-30-jan2016/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2016-01-30-jan2016/</guid>
-      <description> keep  coding every day start with tiny example RTFM aka &amp;ldquo;read the xxxx manual&amp;rdquo;, read api doc  problem  not enough time! otemachi building is like a maze.. don&amp;rsquo;t waste time.  try  building &amp;ldquo;real&amp;rdquo; micro service stay streaking with github  have the courage to follow your heart and intuition. they somehow already know what you truly want to become.  </description>
-    </item>
-    
-    <item>
-      <title>sic</title>
-      <link>https://ntk1000.github.io/post/2015-02-03-sic/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2015-02-03-sic/</guid>
-      <description>週末から風邪、体調よくない　喉痛い</description>
-    </item>
-    
-    <item>
-      <title>test2</title>
-      <link>https://ntk1000.github.io/post/2015-01-30-test2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2015-01-30-test2/</guid>
-      <description>testの話
-悩んでいる
-※雪or雨の日はこどもを保育園送るだけで疲れてしまう　体力ない</description>
-    </item>
-    
-    <item>
-      <title>今日考えていたこと</title>
-      <link>https://ntk1000.github.io/post/2015-01-15-tvchild/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ntk1000.github.io/post/2015-01-15-tvchild/</guid>
-      <description> TVがないことがこどもに与える影響 流行を追いかける必要があるのか 読書の習慣 こどもが友達から仲間はずれになった時にどうするか こどもに対する態度 目を見て会話をする、スマホ見ない  </description>
     </item>
     
   </channel>

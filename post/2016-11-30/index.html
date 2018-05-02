@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="keyword 1, keyword 2, keyword 3" name="keywords">
 <meta content="ntk1000" name="author">
-<meta property="og:title" content="sic - ntk1000 zlog">
-<meta property="og:url" content="https://ntk1000.github.io/post/2015-02-03-sic/">
+<meta property="og:title" content="nov 2016 log - ntk1000 zlog">
+<meta property="og:url" content="https://ntk1000.github.io/post/2016-11-30/">
 <meta property="og:description" content="Your description here">
 <meta property="og:type" content="website" />
-<title>sic | ntk1000 zlog</title>
+<title>nov 2016 log | ntk1000 zlog</title>
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -69,20 +69,79 @@
 
 <section class="section">
   <div class="container">
-    <h1 class="title">sic</h1>
-    <h2 class="subtitle is-5">February 3, 2015 by ntk1000</h2>
+    <h1 class="title">nov 2016 log</h1>
+    <h2 class="subtitle is-5">November 30, 2016 by ntk1000</h2>
     
     <div class="content">
-      <p>週末から風邪、体調よくない　喉痛い</p>
+      
+
+<h2 id="2016-11-18">2016-11-18</h2>
+
+<p>erase specific git file/directory</p>
+
+<pre><code>file
+$ git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch filename' HEAD
+
+directory
+$ git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch dirname' HEAD
+
+push
+$ git push --force origin branch
+
+</code></pre>
+
+<h2 id="2016-11-01">2016-11-01</h2>
+
+<p>! not for production
+docker-compose on coreos
+via <a href="http://www.ericluwj.com/2015/10/20/installing-docker-compose-in-coreos.html">http://www.ericluwj.com/2015/10/20/installing-docker-compose-in-coreos.html</a>
+* sudo su -
+* mkdir -p /opt/bin
+* curl -L <a href="https://github.com/docker/compose/releases/download/X.Y.Z/docker-compose-`uname">https://github.com/docker/compose/releases/download/X.Y.Z/docker-compose-`uname</a> -s<code>-</code>uname -m` &gt; /opt/bin/docker-compose
+* chmod +x /opt/bin/docker-compose
+* that&rsquo;s it</p>
+
+<h2 id="2016-10-31">2016-10-31</h2>
+
+<p>coreos on idcf cloud</p>
+
+<ul>
+<li>add latest ISO(change URL from https to http)</li>
+<li>create server(name:core1) from ISO with newly created SSH Key</li>
+<li>access to <code>core1</code> via web console and type <code>sudo passwd core</code></li>
+<li>create public ip and add firewall rule , port forward to <code>core1</code></li>
+<li>ssh to <code>core1</code></li>
+<li>create cloud-config.yml</li>
+<li>install coreos to disk via <code>sudo coreos-install -d /dev/sda -C stable -c ./cloud-config.yml</code></li>
+</ul>
+
+<pre><code>#cloud-config
+
+coreos:
+ units:
+   -
+     name: docker.service
+     command: restart
+   -
+     name: settimezone.service
+     command: start
+     content: |
+       [Unit]
+       Description=Set Timezone
+       [Service]
+       ExecStart=/usr/bin/timedatectl set-timezone Asia/Tokyo
+       RemainAfterExit=yes
+       Type=oneshot
+</code></pre>
 
     </div>
     
         <div class="nav-left">
-    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://twitter.com/home?status=sic - https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
-    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f&title=sic" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-11-30%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-11-30%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-11-30%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=nov%202016%20log - https%3a%2f%2fntk1000.github.io%2fpost%2f2016-11-30%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-11-30%2f&title=nov%202016%20log" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
     
     </div>
     

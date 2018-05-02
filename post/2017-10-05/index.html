@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="keyword 1, keyword 2, keyword 3" name="keywords">
 <meta content="ntk1000" name="author">
-<meta property="og:title" content="sic - ntk1000 zlog">
-<meta property="og:url" content="https://ntk1000.github.io/post/2015-02-03-sic/">
+<meta property="og:title" content="table diff - ntk1000 zlog">
+<meta property="og:url" content="https://ntk1000.github.io/post/2017-10-05/">
 <meta property="og:description" content="Your description here">
 <meta property="og:type" content="website" />
-<title>sic | ntk1000 zlog</title>
+<title>table diff | ntk1000 zlog</title>
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -69,20 +69,49 @@
 
 <section class="section">
   <div class="container">
-    <h1 class="title">sic</h1>
-    <h2 class="subtitle is-5">February 3, 2015 by ntk1000</h2>
+    <h1 class="title">table diff</h1>
+    <h2 class="subtitle is-5">October 5, 2017 by ntk1000</h2>
     
     <div class="content">
-      <p>週末から風邪、体調よくない　喉痛い</p>
+      
+
+<h3 id="table-diff-for-mysql-via-http-d-hatena-ne-jp-camus-20060111-1136984749">table diff for mysql via <a href="http://d.hatena.ne.jp/CAMUS/20060111/1136984749">http://d.hatena.ne.jp/CAMUS/20060111/1136984749</a></h3>
+
+<ul>
+<li>same table layout</li>
+<li>want to check key exists only on one side</li>
+</ul>
+
+<pre><code>SELECT KEY FROM (
+　SELECT KEY FROM TBL_A
+　UNION ALL
+　SELECT KEY FROM TBL_B
+)
+GROUP BY KEY
+HAVING COUNT(*) = 1
+</code></pre>
+
+<ul>
+<li>want to check all columns differs one another = table diff</li>
+</ul>
+
+<pre><code>SELECT KEY FROM (
+　SELECT * FROM TBL_A
+　UNION
+　SELECT * FROM TBL_B
+)
+GROUP BY KEY
+HAVING COUNT(*) = 2
+</code></pre>
 
     </div>
     
         <div class="nav-left">
-    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://twitter.com/home?status=sic - https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
-    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f&title=sic" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-10-05%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-10-05%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-10-05%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=table%20diff - https%3a%2f%2fntk1000.github.io%2fpost%2f2017-10-05%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-10-05%2f&title=table%20diff" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
     
     </div>
     

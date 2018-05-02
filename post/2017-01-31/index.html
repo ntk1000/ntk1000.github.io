@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="keyword 1, keyword 2, keyword 3" name="keywords">
 <meta content="ntk1000" name="author">
-<meta property="og:title" content="sic - ntk1000 zlog">
-<meta property="og:url" content="https://ntk1000.github.io/post/2015-02-03-sic/">
+<meta property="og:title" content="jan 2017 log - ntk1000 zlog">
+<meta property="og:url" content="https://ntk1000.github.io/post/2017-01-31/">
 <meta property="og:description" content="Your description here">
 <meta property="og:type" content="website" />
-<title>sic | ntk1000 zlog</title>
+<title>jan 2017 log | ntk1000 zlog</title>
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -69,20 +69,57 @@
 
 <section class="section">
   <div class="container">
-    <h1 class="title">sic</h1>
-    <h2 class="subtitle is-5">February 3, 2015 by ntk1000</h2>
+    <h1 class="title">jan 2017 log</h1>
+    <h2 class="subtitle is-5">January 31, 2017 by ntk1000</h2>
     
     <div class="content">
-      <p>週末から風邪、体調よくない　喉痛い</p>
+      
+
+<h2 id="2017-01-24">2017-01-24</h2>
+
+<p>about td-agent</p>
+
+<pre><code># conf dry-run
+sudo td-agent --dry-run -c /etc/td-agent/td-agent.conf
+# init
+sudo /etc/init.d/td-agent status (etc.)
+# log
+sudo tail -f /var/log/td-agent/td-agent.log
+</code></pre>
+
+<h2 id="2017-01-23">2017-01-23</h2>
+
+<p>log location of ec2 user-data</p>
+
+<pre><code>less /var/log/cloud-init-output.log
+</code></pre>
+
+<h2 id="2017-01-12">2017-01-12</h2>
+
+<pre><code>sudo td-agent-gem install fluent-plugin-rewrite-tag-filter
+sudo td-agent-gem install fluent-plugin-slack
+</code></pre>
+
+<h2 id="2017-01-11">2017-01-11</h2>
+
+<p>via
+* <a href="https://coreos.com/os/docs/latest/scheduling-tasks-with-systemd-timers.html">https://coreos.com/os/docs/latest/scheduling-tasks-with-systemd-timers.html</a>
+* <a href="http://stackoverflow.com/questions/29086918/docker-compose-to-coreos">http://stackoverflow.com/questions/29086918/docker-compose-to-coreos</a>
+* <a href="http://qiita.com/TakiTake@github/items/b66aeb1eb266f97fafe5">http://qiita.com/TakiTake@github/items/b66aeb1eb266f97fafe5</a></p>
+
+<p>auto start docker-compose on coreos</p>
+
+<pre><code>sudo coreos-cloudinit --from-file /path/to/cloud-config.yml
+</code></pre>
 
     </div>
     
         <div class="nav-left">
-    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://twitter.com/home?status=sic - https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
-    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2015-02-03-sic%2f&title=sic" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-01-31%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-01-31%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-01-31%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=jan%202017%20log - https%3a%2f%2fntk1000.github.io%2fpost%2f2017-01-31%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2017-01-31%2f&title=jan%202017%20log" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
     
     </div>
     

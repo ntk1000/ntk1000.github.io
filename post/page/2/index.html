@@ -70,8 +70,121 @@
   <div class="container">
     
     <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-02-11-dockermemo1/">feb 2016 docker memo</a></h1>
-      <h2 class="subtitle is-5">January 1, 0001</h2>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-08-31/">aug 2016 log</a></h1>
+      <h2 class="subtitle is-5">August 31, 2016</h2>
+      
+      <div class="content">
+         2016-08-04 docker entrypoint override
+ overrider with &ndash;entrypoint flag command with end parameter  $ docker run -it --entrypoint /bin/consul gliderlabs/consul-server version Consul v0.6.4 ...  
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-07-31/">jul 2016 log</a></h1>
+      <h2 class="subtitle is-5">July 31, 2016</h2>
+      
+      <div class="content">
+         2016-07-15 rbenv init
+eval &quot;$(rbenv init -)&quot; rbenv rehash gem install hogehoge  
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-06-30/">jun 2016 log</a></h1>
+      <h2 class="subtitle is-5">June 30, 2016</h2>
+      
+      <div class="content">
+        2016-06-27 personal memo
+ https://talks.golang.org/2012/10things.slide https://www.appneta.com/blog/automated-testing-with-docker/ http://developers.linecorp.com/blog/ja/?p=3392 https://thepracticalsysadmin.com/ecs-cluster-turnup-with-coreos-and-terraform/ http://postd.cc/eight-docker-development-patterns/ http://yut.hatenablog.com/entry/20130617/1371425713  2016-06-07 set timezone and ecs-agent to coreos
+ userdata  #cloud-config coreos: units: - name: settimezone.service command: start content: | [Unit] Description=Set Timezone [Service] ExecStart=/usr/bin/timedatectl set-timezone Asia/Tokyo RemainAfterExit=yes Type=oneshot - name: amazon-ecs-agent.service command: start runtime: true content: | [Unit] Description=AWS ECS Agent Documentation=https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ Requires=docker.socket After=docker.socket [Service] Environment=ECS_CLUSTER=your-ecs-cluster-name Environment=ECS_LOGLEVEL=info Environment=ECS_VERSION=latest Restart=on-failure RestartSec=30 RestartPreventExitStatus=5 SyslogIdentifier=ecs-agent ExecStartPre=-/bin/mkdir -p /var/log/ecs /var/ecs-data /etc/ecs ExecStartPre=-/usr/bin/touch /etc/ecs/ecs.
+        
+        ...<a class="button is-link" href="https://ntk1000.github.io/post/2016-06-30/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-05-31/">may 2016 log</a></h1>
+      <h2 class="subtitle is-5">May 31, 2016</h2>
+      
+      <div class="content">
+        2016-05-27 slack time signal
+/remind #channel to morning standup at 10am every weekday /remind #channel to evening standup at 5pm every weekday /remind list  2016-05-24 install redis-cli on ec2
+$ sudo yum install -y gcc $ wget http://download.redis.io/redis-stable.tar.gz $ tar xvzf redis-stable.tar.gz $ cd redis-stable $ make $ src/redis-cli -h %elasticacheendpoint% -p 6379  2016-05-17 setting timezone at alpine linux on docker
+ FROM gliderlabs/alpine:latest RUN apk --no-cache add tzdata &amp;&amp; \ cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime &amp;&amp; \ apk del tzdata  2016-05-11 mysql(RDS or Aurora) dump restore from local file
+        
+        ...<a class="button is-link" href="https://ntk1000.github.io/post/2016-05-31/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-04-30/">apr 2016 log</a></h1>
+      <h2 class="subtitle is-5">April 30, 2016</h2>
+      
+      <div class="content">
+        2016-04-28 docker network time out
+docker-machine restart default eval $(docker-machine env default)  2016-04-27 http://yuuki.hatenablog.com/entry/diy-container
+2016-04-26 https://github.com/progrium/entrykit
+2016-04-25 sick sick
+2016-04-24 i&rsquo;m sick
+2016-04-23 https://play.golang.org/p/TYOd9ELo2m
+https://play.golang.org/p/Xs2SQ59gez
+http://play.golang.org/p/VdKMLKMYse
+http://play.golang.org/p/sCcfzFuzqR
+https://play.golang.org/p/tlaYWTKXGr
+https://play.golang.org/p/DoBYGQruo6
+2016-04-22  golang testing
+ via https://medium.com/@benbjohnson/structuring-tests-in-go-46ddee7a25c#.x9lf1gida no frameworks &ldquo;underscore test&rdquo; file test-specific types * https://speakerdeck.com/mitchellh/advanced-testing-with-go is also fine slide for testing  i love test
+  2016-04-21 package main import( &quot;fmt&quot; &quot;reflect&quot; ) // Data Model type User struct { Id int Name string Origin string Query func() Tags map[string]string Fields []string } func main(){ list := GetAttrName(&amp;User{}) // slice with .
+        
+        ...<a class="button is-link" href="https://ntk1000.github.io/post/2016-04-30/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-02-18-websocketingo/">websocket in golang memo</a></h1>
+      <h2 class="subtitle is-5">February 18, 2016</h2>
+      
+      <div class="content">
+        use gorilla websocket
+see https://github.com/gorilla/websocket#gorilla-websocket-compared-with-other-packages
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-02-12-sessioncookiememo1/">session cookie memo</a></h1>
+      <h2 class="subtitle is-5">February 12, 2016</h2>
+      
+      <div class="content">
+        development nginx -&gt; redis(cache) -&gt; webapp
+production loadbalancer -&gt; nginx -&gt; redis(cache) -&gt; webapp
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-02-11-dockermemo1/">docker memo</a></h1>
+      <h2 class="subtitle is-5">February 11, 2016</h2>
       
       <div class="content">
         usually i&rsquo;m confused which docker command to use&hellip;
@@ -88,75 +201,29 @@
     </article>
     
     <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-02-02-febmemo/">feb 2016 memo</a></h1>
-      <h2 class="subtitle is-5">January 1, 0001</h2>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-02-04-12factorapp/">12factorapp</a></h1>
+      <h2 class="subtitle is-5">February 4, 2016</h2>
+      
+      <div class="content">
+        12 factor app
+ コードベース  コードベースとアプリケーションは常に1対1、デプロイは環境(開発、ステージング、本番等)毎に複数存在 共通のコードはライブラリ化する  依存関係  依存関係の明示と分離 ex. package.json, gem システム固有の暗黙的なツール(curlなど)を前提にせず、必要な場合はvendor appとして内包する  設定  デプロイ毎に異なる設定をコード内に格納するのでなく、環境変数に格納する ソースをgithub等、ossとして公開状態で管理するのであればcredentialは絶対コード内に格納してはいけない credential, db接続情報、変動があるものは環境変数で読み込む形でコード化する  バックエンドサービス  DB, Storage, SMTP等デタッチアタッチ可能なリソースとして扱う すべてURLで扱う  ビルド、リリース、ラン  それぞれのステージを厳密に分離 ビルド-&gt;リリース-&gt;ラン ビルド: コードを実行可能な形にする、依存関係の整理、コンパイルなど リリース: ビルドとデプロイに関する設定の整理、サーバーで実行できる状態かつロールバック機能を担保する ex.fabric, capistrano ラン: サーバー上でアプリを起動する、実行中のコードを変更することはしてはいけない  プロセス  ステートレス、シェアードナッシングなプロセスとしてアプリを実行する 状態はDBなどのサービスに持たせる memchacheやredisでのキャッシュ管理  ポートバインディング  Webアプリをポートにバインドすることでhttpサービスとして公開する 1 container 1 service  並行性  プロセスモデル採用によるスケールアウトの実現 スレッドではなく、プロセスを用いてスケールアウトする 各プロセスが内部でスレッドやasync/eventedを用いて多重化するのはok  廃棄容易性  高速な起動とグレースフルシャットダウンの両立により堅牢性を高める 起動時間を最小化することによりリリースやスケールアウト時のアジリティを高める プロセス終了時の後処理をきちんとする、新しいリクエストを受けるのをやめ、現在進行している処理は正常に完了させる 冪等性を担保した設計 リクエストの接続が失われても裏で再接続できるような設計  開発本番一致  開発/本番環境のギャップを小さく保つ 時間のギャップ: リリース対象のコードは数時間・数分後にはデプロイ可能な状態とする 人材のギャップ: リリース対象コードを書いた開発者がデプロイ、リリース後の挙動を見守る ツールのギャップ: 開発/本番環境をできるだけ一致させる(利用スタックの統一)  ログ  ログをイベントストリームとして扱う アプリはstdoutにログを吐くだけ 実行中のアプリの挙動を可視化、アーカイブ化できるようなログルーターの利用(ex.
+        
+        ...<a class="button is-link" href="https://ntk1000.github.io/post/2016-02-04-12factorapp/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-02-02-febmemo/">memo</a></h1>
+      <h2 class="subtitle is-5">February 2, 2016</h2>
       
       <div class="content">
          done with docker ecosystem  create each container via Dockerfile set every containers up and connect with port via docker-compose.yml  think about hashicorp tools  Vagrant or Packer alternate with Dockerfile Terraform alternate with docker-compose  
-        
-      </div>
-    </article>
-    
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-02-12-sessioncookiememo1/">feb 2016 session cookie memo</a></h1>
-      <h2 class="subtitle is-5">January 1, 0001</h2>
-      
-      <div class="content">
-        development nginx -&gt; redis(cache) -&gt; webapp
-production loadbalancer -&gt; nginx -&gt; redis(cache) -&gt; webapp
-        
-      </div>
-    </article>
-    
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-02-18-websocketingo/">feb 2016 websocket in golang memo</a></h1>
-      <h2 class="subtitle is-5">January 1, 0001</h2>
-      
-      <div class="content">
-        use gorilla websocket
-see https://github.com/gorilla/websocket#gorilla-websocket-compared-with-other-packages
-        
-      </div>
-    </article>
-    
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-01-30-jan2016/">jan 2016 kpt</a></h1>
-      <h2 class="subtitle is-5">January 1, 0001</h2>
-      
-      <div class="content">
-         keep  coding every day start with tiny example RTFM aka &ldquo;read the xxxx manual&rdquo;, read api doc  problem  not enough time! otemachi building is like a maze.. don&rsquo;t waste time.  try  building &ldquo;real&rdquo; micro service stay streaking with github  have the courage to follow your heart and intuition. they somehow already know what you truly want to become.  
-        
-      </div>
-    </article>
-    
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2015-02-03-sic/">sic</a></h1>
-      <h2 class="subtitle is-5">January 1, 0001</h2>
-      
-      <div class="content">
-        週末から風邪、体調よくない　喉痛い
-        
-      </div>
-    </article>
-    
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2015-01-30-test2/">test2</a></h1>
-      <h2 class="subtitle is-5">January 1, 0001</h2>
-      
-      <div class="content">
-        testの話
-悩んでいる
-※雪or雨の日はこどもを保育園送るだけで疲れてしまう　体力ない
-        
-      </div>
-    </article>
-    
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2015-01-15-tvchild/">今日考えていたこと</a></h1>
-      <h2 class="subtitle is-5">January 1, 0001</h2>
-      
-      <div class="content">
-         TVがないことがこどもに与える影響 流行を追いかける必要があるのか 読書の習慣 こどもが友達から仲間はずれになった時にどうするか こどもに対する態度 目を見て会話をする、スマホ見ない  
         
       </div>
     </article>
@@ -180,6 +247,13 @@ see https://github.com/gorilla/websocket#gorilla-websocket-compared-with-other-p
       </div>
       <div class="level-right is-marginless">
         <div class="level-item">
+          
+          <a class="button" href="https://ntk1000.github.io/post/page/3/">
+            Older
+            <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-right"></i>
+            </span>
+          </a>
           
         </div>
       </div>
