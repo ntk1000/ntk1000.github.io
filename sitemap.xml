@@ -3,98 +3,98 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://example.com/post/2015-01-14-init/</loc>
+    <loc>https://ntk1000.github.io/post/2015-01-14-init/</loc>
     <lastmod>2015-01-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/post/readme/</loc>
+    <loc>https://ntk1000.github.io/post/readme/</loc>
   </url>
   
   <url>
-    <loc>https://example.com/post/2016-02-04-12factorapp/</loc>
+    <loc>https://ntk1000.github.io/post/2016-02-04-12factorapp/</loc>
   </url>
   
   <url>
-    <loc>https://example.com/categories/</loc>
+    <loc>https://ntk1000.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/post/</loc>
-    <lastmod>2015-01-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://example.com/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2015-01-21-webdriversample/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2015-04-02-agile0/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2015-01-22-bd33/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2015-01-17-test/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2015-01-29-changefont/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2015-01-16-csharpetc/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2015-02-26-dotfiles/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2016-02-11-dockermemo1/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2016-02-02-febmemo/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2016-02-12-sessioncookiememo1/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2016-02-18-websocketingo/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/post/2016-01-30-jan2016/</loc>
-  </url>
-  
-  <url>
-    <loc>https://example.com/</loc>
+    <loc>https://ntk1000.github.io/post/</loc>
     <lastmod>2015-01-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/post/2015-02-03-sic/</loc>
+    <loc>https://ntk1000.github.io/tags/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.com/post/2015-01-30-test2/</loc>
+    <loc>https://ntk1000.github.io/post/2015-01-21-webdriversample/</loc>
   </url>
   
   <url>
-    <loc>https://example.com/post/2015-01-15-tvchild/</loc>
+    <loc>https://ntk1000.github.io/post/2015-04-02-agile0/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2015-01-22-bd33/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2015-01-17-test/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2015-01-29-changefont/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2015-01-16-csharpetc/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2015-02-26-dotfiles/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2016-02-11-dockermemo1/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2016-02-02-febmemo/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2016-02-12-sessioncookiememo1/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2016-02-18-websocketingo/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2016-01-30-jan2016/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/</loc>
+    <lastmod>2015-01-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2015-02-03-sic/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2015-01-30-test2/</loc>
+  </url>
+  
+  <url>
+    <loc>https://ntk1000.github.io/post/2015-01-15-tvchild/</loc>
   </url>
   
 </urlset>
