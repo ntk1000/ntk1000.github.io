@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="keyword 1, keyword 2, keyword 3" name="keywords">
+<meta content="ntk1000" name="author">
+<meta property="og:title" content="feb 2016 docker memo - ntk1000 zlog">
+<meta property="og:url" content="https://example.com/post/2016-02-11-dockermemo1/">
+<meta property="og:description" content="Your description here">
+<meta property="og:type" content="website" />
+<title>feb 2016 docker memo | ntk1000 zlog</title>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://example.com/css/style.css">
+<link rel="shortcut icon" href="https://example.com/wave.ico">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+
+</head>
+
+<body>
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://example.com"><h1 class="title is-4">ntk1000 zlog</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://linkedin.com/in/jun-asano-72648213b" target="_blank">
+            <span class="icon">
+              <i class="fa fa-linkedin-square"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml" target="_blank">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">feb 2016 docker memo</h1>
+    <h2 class="subtitle is-5">January 1, 0001 by ntk1000</h2>
+    
+    <div class="content">
+      <p>usually i&rsquo;m confused which docker command to use&hellip;</p>
+
+<ul>
+<li>docker : command for docker container</li>
+<li>docker build -f /path/to/Dockerfile : build docker image via Dockerfile</li>
+<li>docker-machine : command for host machine of docker</li>
+<li>docker-compose : set up containers via docker-compose.yml</li>
+</ul>
+
+<pre><code>
+# build image via Dockerfile
+&gt; docker build -t mysql:5.6 . (--no-cache=true when dont want to use existing cache)
+
+# list existing images
+&gt; docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+mysql                   5.6                 36c3291f3a2d        8 seconds ago       324.2 MB
+...
+
+# run 
+&gt; docker run --name mysql mysql:5.6 -e MYSQL_ROOT_PASSWORD=secret
+&gt; docker run --name mysql -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABASE=test -e MYSQL_USER=foo -e MYSQL_PASSWORD=secret -d mysql:5.6
+ff01b4bea17e4370b64c3096eb78fd7edd8146f3fc39605506b823831a698d1c
+
+# list process
+&gt; docker ps                                                                                                                 
+CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                    NAMES
+ff01b4bea17e        mysql:5.6               &quot;/entrypoint.sh mysql&quot;   4 seconds ago       Up 4 seconds        3306/tcp                 mysql
+
+# log
+&gt; docker logs mysql
+...
+
+# connect to container
+&gt; docker exec -it mysql bash
+root%fdafa:/#
+
+# run client container
+&gt; docker run --link mysql:mysql -it --rm mysql:5.6 bash
+root@b801dd755415:/#
+
+# conn from client container
+&gt; docker run --link mysql:mysql -it --rm mysql:5.6 bash
+root@b801dd755415:/#
+root@b801dd755415:/# mysql -u foo -psecret -h $MYSQL_PORT_3306_TCP_ADDR test
+Warning: Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1
+Server version: 5.6.29 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql&gt;
+</code></pre>
+
+    </div>
+    
+        <div class="nav-left">
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fexample.com%2fpost%2f2016-02-11-dockermemo1%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fexample.com%2fpost%2f2016-02-11-dockermemo1%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fexample.com%2fpost%2f2016-02-11-dockermemo1%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=feb%202016%20docker%20memo - https%3a%2f%2fexample.com%2fpost%2f2016-02-11-dockermemo1%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fexample.com%2fpost%2f2016-02-11-dockermemo1%2f&title=feb%202016%20docker%20memo" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    
+    </div>
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'shortname';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dockerfile.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-33278616-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>

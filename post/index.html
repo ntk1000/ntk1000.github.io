@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="keyword 1, keyword 2, keyword 3" name="keywords">
+<meta content="ntk1000" name="author">
+<meta property="og:title" content="Posts - ntk1000 zlog">
+<meta property="og:url" content="https://example.com/post/">
+<meta property="og:description" content="Your description here">
+<meta property="og:type" content="website" />
+<title>Posts | ntk1000 zlog</title>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://example.com/css/style.css">
+<link rel="shortcut icon" href="https://example.com/wave.ico">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+
+</head>
+
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://example.com"><h1 class="title is-4">ntk1000 zlog</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://linkedin.com/in/jun-asano-72648213b" target="_blank">
+            <span class="icon">
+              <i class="fa fa-linkedin-square"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml" target="_blank">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    
+    <article>
+      <h1 class="title"><a href="https://example.com/post/2015-01-14-init/">init</a></h1>
+      <h2 class="subtitle is-5">January 14, 2015</h2>
+      
+      <div class="content">
+         考えたことや気になったことをメモします
+vim utf-8のファイル、BOM有無にかかわらず文字化けするようになってしまった
+(前は普通に開けていたような気がするのだけど&hellip;)
+vimのバイナリが原因と思って日本語用のvimに入れ替えたいと思ったが、 Kaoriya-Vimが会社からダウンロードできない
+vimrc  開いたファイルのencoding表示する設定   set laststatus=2 set statusline=%&lt;%f\ %m\ %r%h%w%{'['.(&amp;fenc!=''?&amp;fenc:&amp;enc).']['.&amp;ff.']'}%=\ (%v,%l)/%L%8P\  Atom Atomを入れなおして使っている
+memo 昨日のトラブル時に外国のエンジニアが使っていたツール
+ webex pexpect  
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://example.com/post/readme/"></a></h1>
+      <h2 class="subtitle is-5">January 1, 0001</h2>
+      
+      <div class="content">
+        zlog loggin daily activity
+2017-10-06 replace string under directory via sed
+find . -type f -print | xargs sed -i -e 's/before/after/g'  vim changelog add .xshrc this function
+function zs() { LOG=/path/to/logfile sed -i -e &quot;4i ## `date +'%Y-%m-%d'`&quot; $LOG | vim $LOG }  2017-10-05 table diff for mysql via http://d.hatena.ne.jp/CAMUS/20060111/1136984749  same table layout want to check key exists only on one side  SELECT KEY FROM ( SELECT KEY FROM TBL_A UNION ALL SELECT KEY FROM TBL_B ) GROUP BY KEY HAVING COUNT(*) = 1   want to check all columns differs one another = table diff  SELECT KEY FROM ( SELECT * FROM TBL_A UNION SELECT * FROM TBL_B ) GROUP BY KEY HAVING COUNT(*) = 2  2017-05-02 terraform loop
+        
+        ...<a class="button is-link" href="https://example.com/post/readme/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://example.com/post/2016-02-04-12factorapp/">12factorapp</a></h1>
+      <h2 class="subtitle is-5">January 1, 0001</h2>
+      
+      <div class="content">
+        12 factor app
+ コードベース  コードベースとアプリケーションは常に1対1、デプロイは環境(開発、ステージング、本番等)毎に複数存在 共通のコードはライブラリ化する  依存関係  依存関係の明示と分離 ex. package.json, gem システム固有の暗黙的なツール(curlなど)を前提にせず、必要な場合はvendor appとして内包する  設定  デプロイ毎に異なる設定をコード内に格納するのでなく、環境変数に格納する ソースをgithub等、ossとして公開状態で管理するのであればcredentialは絶対コード内に格納してはいけない credential, db接続情報、変動があるものは環境変数で読み込む形でコード化する  バックエンドサービス  DB, Storage, SMTP等デタッチアタッチ可能なリソースとして扱う すべてURLで扱う  ビルド、リリース、ラン  それぞれのステージを厳密に分離 ビルド-&gt;リリース-&gt;ラン ビルド: コードを実行可能な形にする、依存関係の整理、コンパイルなど リリース: ビルドとデプロイに関する設定の整理、サーバーで実行できる状態かつロールバック機能を担保する ex.fabric, capistrano ラン: サーバー上でアプリを起動する、実行中のコードを変更することはしてはいけない  プロセス  ステートレス、シェアードナッシングなプロセスとしてアプリを実行する 状態はDBなどのサービスに持たせる memchacheやredisでのキャッシュ管理  ポートバインディング  Webアプリをポートにバインドすることでhttpサービスとして公開する 1 container 1 service  並行性  プロセスモデル採用によるスケールアウトの実現 スレッドではなく、プロセスを用いてスケールアウトする 各プロセスが内部でスレッドやasync/eventedを用いて多重化するのはok  廃棄容易性  高速な起動とグレースフルシャットダウンの両立により堅牢性を高める 起動時間を最小化することによりリリースやスケールアウト時のアジリティを高める プロセス終了時の後処理をきちんとする、新しいリクエストを受けるのをやめ、現在進行している処理は正常に完了させる 冪等性を担保した設計 リクエストの接続が失われても裏で再接続できるような設計  開発本番一致  開発/本番環境のギャップを小さく保つ 時間のギャップ: リリース対象のコードは数時間・数分後にはデプロイ可能な状態とする 人材のギャップ: リリース対象コードを書いた開発者がデプロイ、リリース後の挙動を見守る ツールのギャップ: 開発/本番環境をできるだけ一致させる(利用スタックの統一)  ログ  ログをイベントストリームとして扱う アプリはstdoutにログを吐くだけ 実行中のアプリの挙動を可視化、アーカイブ化できるようなログルーターの利用(ex.
+        
+        ...<a class="button is-link" href="https://example.com/post/2016-02-04-12factorapp/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://example.com/post/2015-01-21-webdriversample/">WebDriver.js</a></h1>
+      <h2 class="subtitle is-5">January 1, 0001</h2>
+      
+      <div class="content">
+        この記事を参考にweb自動化の練習
+Selenium Server
+start-selenium  実行
+node webdrivertest.js   ﻿var webdriver = require('selenium-webdriver'); var By = webdriver.By; var SeleniumServer = require('selenium-webdriver/remote').SeleniumServer; var pathToSeleniumJar = 'C:\\Program Files\\nodejs\\node_modules\\selenium-standalone\\.selenium\\2.44.0\\server.jar' var server = new SeleniumServer(pathToSeleniumJar,{ port : 4444}); server.start(); var driver = new webdriver .Builder() .usingServer(server.address()) .withCapabilities(webdriver.Capabilities.chrome()) .build(); var $ = driver.findElement.bind(driver); driver.get('url'); // Login $(By.name('LoginID')).sendKeys('id'); $(By.name('LoginPassword')).sendKeys('passwd'); $(By.name('btnLogin')).click(); // var timeoutMSec = 2000; driver .wait(webdriver.until.elementLocated(By.name('buttonCompanySelect')), timeoutMSec) .then(function() { console.log('login success'); $(By.id('120')).click(); $(By.id('buttonCompanySelect')).click(); driver .
+        
+        ...<a class="button is-link" href="https://example.com/post/2015-01-21-webdriversample/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://example.com/post/2015-04-02-agile0/">agile0</a></h1>
+      <h2 class="subtitle is-5">January 1, 0001</h2>
+      
+      <div class="content">
+        agile samurai memo 0 大きなタスクを小さくする 振り返り ベロシティの計測（タスクがどれくらいで実現できたか）できてない タスク、要望、チケット管理したほうがよいと思った 要求内容変わるので履歴を残したい 検索性を高める 情報を1つの箇所にまとめる 社内redmine、改造できないかた自分でホストしたほうがよいのでは redmineとpivotaltrackerの違い？ redmineとtrello比較
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://example.com/post/2015-01-22-bd33/">bd33</a></h1>
+      <h2 class="subtitle is-5">January 1, 0001</h2>
+      
+      <div class="content">
+        33
+https://www.youtube.com/watch?v=9fWipOMTc34
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://example.com/post/2015-01-17-test/">blog更新</a></h1>
+      <h2 class="subtitle is-5">January 1, 0001</h2>
+      
+      <div class="content">
+        ちゃんと更新されないのでテスト
+markdownのエラーだったので従って修正した
+_config.yml fileを
+markdown: kramdown  変えた
+code syntaxが~に変わるので違和感がある
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://example.com/post/2015-01-29-changefont/">changefont</a></h1>
+      <h2 class="subtitle is-5">January 1, 0001</h2>
+      
+      <div class="content">
+        font入れてみた
+vim の設定
+ set guifont=Ricty_Diminished_Discord:h9  
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://example.com/post/2015-01-16-csharpetc/">day3</a></h1>
+      <h2 class="subtitle is-5">January 1, 0001</h2>
+      
+      <div class="content">
+        Regex stackoverflowで見たコードの詳細を調べる
+コード
+string s = &quot;test [4df] test [5y&quot; + Environment.NewLine + &quot;u] test [6nf]&quot;; ICollection&lt;string&gt; matches = Regex.Matches(s.Replace(Environment.NewLine, &quot;&quot;), @&quot;\[([^]]*)\]&quot;) .Cast&lt;Match&gt;() .Select(x =&gt; x.Groups[1].Value) .ToList(); foreach (string match in matches) Console.WriteLine(match);  正規表現の意味
+ \[ : Match a literal [ ( : Start a new group, match.Groups[1] [^]] : Match any character except ] * : 0 or more of the above ) : Close the group \] : Literal ]  自分の場合やりたかったのは 「さむい(小並感)」みたいな文字列から「小並感」を抽出したかった あるいは「ほほほ(へへへ(ふふふ))」から「へへへ(ふふふ)」を抽出
+        
+        ...<a class="button is-link" href="https://example.com/post/2015-01-16-csharpetc/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://example.com/post/2015-02-26-dotfiles/">dotfiles</a></h1>
+      <h2 class="subtitle is-5">January 1, 0001</h2>
+      
+      <div class="content">
+        vimなど、色々設定行い、設定をdotfilesレポジトリに移動した
+        
+      </div>
+    </article>
+    
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <div class="level-item">
+          
+        </div>
+      </div>
+      <div class="level-right is-marginless">
+        <div class="level-item">
+          
+          <a class="button" href="/post/page/2/">
+            Older
+            <span class="icon is-small is-marginless">
+              <i class="fa fa-angle-right"></i>
+            </span>
+          </a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dockerfile.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-33278616-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+

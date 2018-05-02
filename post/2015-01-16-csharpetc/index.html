@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="keyword 1, keyword 2, keyword 3" name="keywords">
+<meta content="ntk1000" name="author">
+<meta property="og:title" content="day3 - ntk1000 zlog">
+<meta property="og:url" content="https://example.com/post/2015-01-16-csharpetc/">
+<meta property="og:description" content="Your description here">
+<meta property="og:type" content="website" />
+<title>day3 | ntk1000 zlog</title>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://example.com/css/style.css">
+<link rel="shortcut icon" href="https://example.com/wave.ico">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+
+</head>
+
+<body>
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://example.com"><h1 class="title is-4">ntk1000 zlog</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://linkedin.com/in/jun-asano-72648213b" target="_blank">
+            <span class="icon">
+              <i class="fa fa-linkedin-square"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml" target="_blank">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">day3</h1>
+    <h2 class="subtitle is-5">January 1, 0001 by ntk1000</h2>
+    
+    <div class="content">
+      
+
+<h1 id="regex">Regex</h1>
+
+<p><a href="http://stackoverflow.com/questions/1811183/how-to-extract-the-contents-of-square-brackets-in-a-string-of-text-in-c-sharp-us">stackoverflow</a>で見たコードの詳細を調べる</p>
+
+<p>コード</p>
+
+<pre><code class="language-csharp">
+string s = &quot;test [4df] test [5y&quot; + Environment.NewLine + &quot;u] test [6nf]&quot;;
+
+ICollection&lt;string&gt; matches =
+  Regex.Matches(s.Replace(Environment.NewLine, &quot;&quot;), @&quot;\[([^]]*)\]&quot;)
+    .Cast&lt;Match&gt;()
+    .Select(x =&gt; x.Groups[1].Value)
+    .ToList();
+
+foreach (string match in matches)
+  Console.WriteLine(match);
+
+</code></pre>
+
+<p>正規表現の意味</p>
+
+<pre><code>  \[   : Match a literal [
+  (    : Start a new group, match.Groups[1]
+  [^]] : Match any character except ]
+  *    : 0 or more of the above
+  )    : Close the group
+  \]   : Literal ]
+</code></pre>
+
+<p>自分の場合やりたかったのは
+「さむい(小並感)」みたいな文字列から「小並感」を抽出したかった
+あるいは「ほほほ(へへへ(ふふふ))」から「へへへ(ふふふ)」を抽出</p>
+
+<p>こうした
+ちょっと不完全か</p>
+
+<pre><code class="language-csharp">
+public string TrimBrackets(string param)
+{
+  if (string.IsNullOrEmpty(param)) return param;
+  var regex = new Regex(@&quot;\(([^)]*)\)&quot;);
+  var match =  regex.Match(param);
+  if (!match.Success) return param;
+  return match.Groups[1].Value;
+}
+
+</code></pre>
+
+<h1 id="linq">Linq</h1>
+
+<p>重複チェックのようなもの、かいた</p>
+
+<pre><code class="language-csharp">
+var check = units
+  .GroupBy(x =&gt; new { x.cd, x.label_e })
+  .GroupBy(x =&gt; new { x.Key.cd })
+  .Select(x =&gt; new { cd = x.Key, count = x.Count()});
+
+var result = check.Any(x =&gt; x.count &gt; 1);
+
+if (result)
+{
+  check.Where(x =&gt; x.count &gt; 1)
+  .ToList()
+  .ForEach(x =&gt;
+    {
+      var cd = x.cd;
+      logger.Info(&quot;指標違い：&quot; + cd);
+      });
+    }
+return result;
+
+</code></pre>
+
+    </div>
+    
+        <div class="nav-left">
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fexample.com%2fpost%2f2015-01-16-csharpetc%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fexample.com%2fpost%2f2015-01-16-csharpetc%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fexample.com%2fpost%2f2015-01-16-csharpetc%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=day3 - https%3a%2f%2fexample.com%2fpost%2f2015-01-16-csharpetc%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fexample.com%2fpost%2f2015-01-16-csharpetc%2f&title=day3" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    
+    </div>
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'shortname';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dockerfile.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-33278616-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>

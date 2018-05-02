@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on ntk1000 zlog</title>
+    <link>https://example.com/post/</link>
+    <description>Recent content in Posts on ntk1000 zlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 14 Jan 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://example.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>init</title>
+      <link>https://example.com/post/2015-01-14-init/</link>
+      <pubDate>Wed, 14 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2015-01-14-init/</guid>
+      <description> 考えたことや気になったことをメモします
+vim utf-8のファイル、BOM有無にかかわらず文字化けするようになってしまった
+(前は普通に開けていたような気がするのだけど&amp;hellip;)
+vimのバイナリが原因と思って日本語用のvimに入れ替えたいと思ったが、 Kaoriya-Vimが会社からダウンロードできない
+vimrc  開いたファイルのencoding表示する設定   set laststatus=2 set statusline=%&amp;lt;%f\ %m\ %r%h%w%{&#39;[&#39;.(&amp;amp;fenc!=&#39;&#39;?&amp;amp;fenc:&amp;amp;enc).&#39;][&#39;.&amp;amp;ff.&#39;]&#39;}%=\ (%v,%l)/%L%8P\  Atom Atomを入れなおして使っている
+memo 昨日のトラブル時に外国のエンジニアが使っていたツール
+ webex pexpect  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://example.com/post/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/readme/</guid>
+      <description>zlog loggin daily activity
+2017-10-06 replace string under directory via sed
+find . -type f -print | xargs sed -i -e &#39;s/before/after/g&#39;  vim changelog add .xshrc this function
+function zs() { LOG=/path/to/logfile sed -i -e &amp;quot;4i ## `date +&#39;%Y-%m-%d&#39;`&amp;quot; $LOG | vim $LOG }  2017-10-05 table diff for mysql via http://d.hatena.ne.jp/CAMUS/20060111/1136984749  same table layout want to check key exists only on one side  SELECT KEY FROM ( SELECT KEY FROM TBL_A UNION ALL SELECT KEY FROM TBL_B ) GROUP BY KEY HAVING COUNT(*) = 1   want to check all columns differs one another = table diff  SELECT KEY FROM ( SELECT * FROM TBL_A UNION SELECT * FROM TBL_B ) GROUP BY KEY HAVING COUNT(*) = 2  2017-05-02 terraform loop</description>
+    </item>
+    
+    <item>
+      <title>12factorapp</title>
+      <link>https://example.com/post/2016-02-04-12factorapp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2016-02-04-12factorapp/</guid>
+      <description>12 factor app
+ コードベース  コードベースとアプリケーションは常に1対1、デプロイは環境(開発、ステージング、本番等)毎に複数存在 共通のコードはライブラリ化する  依存関係  依存関係の明示と分離 ex. package.json, gem システム固有の暗黙的なツール(curlなど)を前提にせず、必要な場合はvendor appとして内包する  設定  デプロイ毎に異なる設定をコード内に格納するのでなく、環境変数に格納する ソースをgithub等、ossとして公開状態で管理するのであればcredentialは絶対コード内に格納してはいけない credential, db接続情報、変動があるものは環境変数で読み込む形でコード化する  バックエンドサービス  DB, Storage, SMTP等デタッチアタッチ可能なリソースとして扱う すべてURLで扱う  ビルド、リリース、ラン  それぞれのステージを厳密に分離 ビルド-&amp;gt;リリース-&amp;gt;ラン ビルド: コードを実行可能な形にする、依存関係の整理、コンパイルなど リリース: ビルドとデプロイに関する設定の整理、サーバーで実行できる状態かつロールバック機能を担保する ex.fabric, capistrano ラン: サーバー上でアプリを起動する、実行中のコードを変更することはしてはいけない  プロセス  ステートレス、シェアードナッシングなプロセスとしてアプリを実行する 状態はDBなどのサービスに持たせる memchacheやredisでのキャッシュ管理  ポートバインディング  Webアプリをポートにバインドすることでhttpサービスとして公開する 1 container 1 service  並行性  プロセスモデル採用によるスケールアウトの実現 スレッドではなく、プロセスを用いてスケールアウトする 各プロセスが内部でスレッドやasync/eventedを用いて多重化するのはok  廃棄容易性  高速な起動とグレースフルシャットダウンの両立により堅牢性を高める 起動時間を最小化することによりリリースやスケールアウト時のアジリティを高める プロセス終了時の後処理をきちんとする、新しいリクエストを受けるのをやめ、現在進行している処理は正常に完了させる 冪等性を担保した設計 リクエストの接続が失われても裏で再接続できるような設計  開発本番一致  開発/本番環境のギャップを小さく保つ 時間のギャップ: リリース対象のコードは数時間・数分後にはデプロイ可能な状態とする 人材のギャップ: リリース対象コードを書いた開発者がデプロイ、リリース後の挙動を見守る ツールのギャップ: 開発/本番環境をできるだけ一致させる(利用スタックの統一)  ログ  ログをイベントストリームとして扱う アプリはstdoutにログを吐くだけ 実行中のアプリの挙動を可視化、アーカイブ化できるようなログルーターの利用(ex.</description>
+    </item>
+    
+    <item>
+      <title>WebDriver.js</title>
+      <link>https://example.com/post/2015-01-21-webdriversample/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2015-01-21-webdriversample/</guid>
+      <description>この記事を参考にweb自動化の練習
+Selenium Server
+start-selenium  実行
+node webdrivertest.js   ﻿var webdriver = require(&#39;selenium-webdriver&#39;); var By = webdriver.By; var SeleniumServer = require(&#39;selenium-webdriver/remote&#39;).SeleniumServer; var pathToSeleniumJar = &#39;C:\\Program Files\\nodejs\\node_modules\\selenium-standalone\\.selenium\\2.44.0\\server.jar&#39; var server = new SeleniumServer(pathToSeleniumJar,{ port : 4444}); server.start(); var driver = new webdriver .Builder() .usingServer(server.address()) .withCapabilities(webdriver.Capabilities.chrome()) .build(); var $ = driver.findElement.bind(driver); driver.get(&#39;url&#39;); // Login $(By.name(&#39;LoginID&#39;)).sendKeys(&#39;id&#39;); $(By.name(&#39;LoginPassword&#39;)).sendKeys(&#39;passwd&#39;); $(By.name(&#39;btnLogin&#39;)).click(); // var timeoutMSec = 2000; driver .wait(webdriver.until.elementLocated(By.name(&#39;buttonCompanySelect&#39;)), timeoutMSec) .then(function() { console.log(&#39;login success&#39;); $(By.id(&#39;120&#39;)).click(); $(By.id(&#39;buttonCompanySelect&#39;)).click(); driver .</description>
+    </item>
+    
+    <item>
+      <title>agile0</title>
+      <link>https://example.com/post/2015-04-02-agile0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2015-04-02-agile0/</guid>
+      <description>agile samurai memo 0 大きなタスクを小さくする 振り返り ベロシティの計測（タスクがどれくらいで実現できたか）できてない タスク、要望、チケット管理したほうがよいと思った 要求内容変わるので履歴を残したい 検索性を高める 情報を1つの箇所にまとめる 社内redmine、改造できないかた自分でホストしたほうがよいのでは redmineとpivotaltrackerの違い？ redmineとtrello比較</description>
+    </item>
+    
+    <item>
+      <title>bd33</title>
+      <link>https://example.com/post/2015-01-22-bd33/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2015-01-22-bd33/</guid>
+      <description>33
+https://www.youtube.com/watch?v=9fWipOMTc34</description>
+    </item>
+    
+    <item>
+      <title>blog更新</title>
+      <link>https://example.com/post/2015-01-17-test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2015-01-17-test/</guid>
+      <description>ちゃんと更新されないのでテスト
+markdownのエラーだったので従って修正した
+_config.yml fileを
+markdown: kramdown  変えた
+code syntaxが~に変わるので違和感がある</description>
+    </item>
+    
+    <item>
+      <title>changefont</title>
+      <link>https://example.com/post/2015-01-29-changefont/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2015-01-29-changefont/</guid>
+      <description>font入れてみた
+vim の設定
+ set guifont=Ricty_Diminished_Discord:h9  </description>
+    </item>
+    
+    <item>
+      <title>day3</title>
+      <link>https://example.com/post/2015-01-16-csharpetc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2015-01-16-csharpetc/</guid>
+      <description>Regex stackoverflowで見たコードの詳細を調べる
+コード
+string s = &amp;quot;test [4df] test [5y&amp;quot; + Environment.NewLine + &amp;quot;u] test [6nf]&amp;quot;; ICollection&amp;lt;string&amp;gt; matches = Regex.Matches(s.Replace(Environment.NewLine, &amp;quot;&amp;quot;), @&amp;quot;\[([^]]*)\]&amp;quot;) .Cast&amp;lt;Match&amp;gt;() .Select(x =&amp;gt; x.Groups[1].Value) .ToList(); foreach (string match in matches) Console.WriteLine(match);  正規表現の意味
+ \[ : Match a literal [ ( : Start a new group, match.Groups[1] [^]] : Match any character except ] * : 0 or more of the above ) : Close the group \] : Literal ]  自分の場合やりたかったのは 「さむい(小並感)」みたいな文字列から「小並感」を抽出したかった あるいは「ほほほ(へへへ(ふふふ))」から「へへへ(ふふふ)」を抽出</description>
+    </item>
+    
+    <item>
+      <title>dotfiles</title>
+      <link>https://example.com/post/2015-02-26-dotfiles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2015-02-26-dotfiles/</guid>
+      <description>vimなど、色々設定行い、設定をdotfilesレポジトリに移動した</description>
+    </item>
+    
+    <item>
+      <title>feb 2016 docker memo</title>
+      <link>https://example.com/post/2016-02-11-dockermemo1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2016-02-11-dockermemo1/</guid>
+      <description>usually i&amp;rsquo;m confused which docker command to use&amp;hellip;
+ docker : command for docker container docker build -f /path/to/Dockerfile : build docker image via Dockerfile docker-machine : command for host machine of docker docker-compose : set up containers via docker-compose.yml   # build image via Dockerfile &amp;gt; docker build -t mysql:5.6 . (--no-cache=true when dont want to use existing cache) # list existing images &amp;gt; docker images REPOSITORY TAG IMAGE ID CREATED SIZE mysql 5.</description>
+    </item>
+    
+    <item>
+      <title>feb 2016 memo</title>
+      <link>https://example.com/post/2016-02-02-febmemo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2016-02-02-febmemo/</guid>
+      <description> done with docker ecosystem  create each container via Dockerfile set every containers up and connect with port via docker-compose.yml  think about hashicorp tools  Vagrant or Packer alternate with Dockerfile Terraform alternate with docker-compose  </description>
+    </item>
+    
+    <item>
+      <title>feb 2016 session cookie memo</title>
+      <link>https://example.com/post/2016-02-12-sessioncookiememo1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2016-02-12-sessioncookiememo1/</guid>
+      <description>development nginx -&amp;gt; redis(cache) -&amp;gt; webapp
+production loadbalancer -&amp;gt; nginx -&amp;gt; redis(cache) -&amp;gt; webapp</description>
+    </item>
+    
+    <item>
+      <title>feb 2016 websocket in golang memo</title>
+      <link>https://example.com/post/2016-02-18-websocketingo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2016-02-18-websocketingo/</guid>
+      <description>use gorilla websocket
+see https://github.com/gorilla/websocket#gorilla-websocket-compared-with-other-packages</description>
+    </item>
+    
+    <item>
+      <title>jan 2016 kpt</title>
+      <link>https://example.com/post/2016-01-30-jan2016/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2016-01-30-jan2016/</guid>
+      <description> keep  coding every day start with tiny example RTFM aka &amp;ldquo;read the xxxx manual&amp;rdquo;, read api doc  problem  not enough time! otemachi building is like a maze.. don&amp;rsquo;t waste time.  try  building &amp;ldquo;real&amp;rdquo; micro service stay streaking with github  have the courage to follow your heart and intuition. they somehow already know what you truly want to become.  </description>
+    </item>
+    
+    <item>
+      <title>sic</title>
+      <link>https://example.com/post/2015-02-03-sic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2015-02-03-sic/</guid>
+      <description>週末から風邪、体調よくない　喉痛い</description>
+    </item>
+    
+    <item>
+      <title>test2</title>
+      <link>https://example.com/post/2015-01-30-test2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2015-01-30-test2/</guid>
+      <description>testの話
+悩んでいる
+※雪or雨の日はこどもを保育園送るだけで疲れてしまう　体力ない</description>
+    </item>
+    
+    <item>
+      <title>今日考えていたこと</title>
+      <link>https://example.com/post/2015-01-15-tvchild/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/post/2015-01-15-tvchild/</guid>
+      <description> TVがないことがこどもに与える影響 流行を追いかける必要があるのか 読書の習慣 こどもが友達から仲間はずれになった時にどうするか こどもに対する態度 目を見て会話をする、スマホ見ない  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="keyword 1, keyword 2, keyword 3" name="keywords">
+<meta content="ntk1000" name="author">
+<meta property="og:title" content=" - ntk1000 zlog">
+<meta property="og:url" content="https://example.com/post/readme/">
+<meta property="og:description" content="Your description here">
+<meta property="og:type" content="website" />
+<title> | ntk1000 zlog</title>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://example.com/css/style.css">
+<link rel="shortcut icon" href="https://example.com/wave.ico">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+
+</head>
+
+<body>
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://example.com"><h1 class="title is-4">ntk1000 zlog</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://linkedin.com/in/jun-asano-72648213b" target="_blank">
+            <span class="icon">
+              <i class="fa fa-linkedin-square"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml" target="_blank">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title"></h1>
+    <h2 class="subtitle is-5">January 1, 0001 by ntk1000</h2>
+    
+    <div class="content">
+      
+
+<h1 id="zlog">zlog</h1>
+
+<p>loggin daily activity</p>
+
+<h2 id="2017-10-06">2017-10-06</h2>
+
+<p>replace string under directory via sed</p>
+
+<pre><code>find . -type f -print | xargs sed -i -e 's/before/after/g'
+</code></pre>
+
+<p>vim changelog
+add .xshrc this function</p>
+
+<pre><code>function zs() {
+    LOG=/path/to/logfile
+    sed -i -e &quot;4i ## `date +'%Y-%m-%d'`&quot; $LOG | vim $LOG
+}
+</code></pre>
+
+<h2 id="2017-10-05">2017-10-05</h2>
+
+<h3 id="table-diff-for-mysql-via-http-d-hatena-ne-jp-camus-20060111-1136984749">table diff for mysql via <a href="http://d.hatena.ne.jp/CAMUS/20060111/1136984749">http://d.hatena.ne.jp/CAMUS/20060111/1136984749</a></h3>
+
+<ul>
+<li>same table layout</li>
+<li>want to check key exists only on one side</li>
+</ul>
+
+<pre><code>SELECT KEY FROM (
+　SELECT KEY FROM TBL_A
+　UNION ALL
+　SELECT KEY FROM TBL_B
+)
+GROUP BY KEY
+HAVING COUNT(*) = 1
+</code></pre>
+
+<ul>
+<li>want to check all columns differs one another = table diff</li>
+</ul>
+
+<pre><code>SELECT KEY FROM (
+　SELECT * FROM TBL_A
+　UNION
+　SELECT * FROM TBL_B
+)
+GROUP BY KEY
+HAVING COUNT(*) = 2
+</code></pre>
+
+<h2 id="2017-05-02">2017-05-02</h2>
+
+<p>terraform loop</p>
+
+<pre><code>resource &quot;aws_ecr_repository&quot; &quot;example&quot; {
+  count = &quot;${var.repos_count}&quot;
+  name = &quot;${element(var.repos,count.index)}&quot;
+}
+
+variable &quot;repos_count&quot; {
+ default = 3
+}
+
+variable &quot;repos&quot; {
+ default = [&quot;ex1&quot;,&quot;ex2&quot;,&quot;ex3&quot;]
+}
+</code></pre>
+
+<h2 id="2017-04-26">2017-04-26</h2>
+
+<p>fluentd log check via <a href="http://qiita.com/yn-misaki/items/2d9aa010c5dccd44e156">http://qiita.com/yn-misaki/items/2d9aa010c5dccd44e156</a></p>
+
+<p>fluentd pos file format</p>
+
+<pre><code>filename            read position           inode of file
+/var/log/target.log 0000000005fe73a1        0000000000046bee
+</code></pre>
+
+<p>convert inode from hexadecimal to decimal</p>
+
+<pre><code># replace lowercase with uppercase
+$ echo &quot;obase=10;ibase=16;0000000000046BEE&quot; | bc
+289774
+</code></pre>
+
+<p>check file inode</p>
+
+<pre><code>$ ls -i /var/log/target.log
+289774 /var/log/target.log
+</code></pre>
+
+<p>convert read pos from hexadecimal to decial</p>
+
+<pre><code>$ echo &quot;obase=10;ibase=16;0000000005FE73A1&quot; | bc
+100561825
+</code></pre>
+
+<p>check log from position</p>
+
+<pre><code>head -c 100561825 /var/log/target.log
+</code></pre>
+
+<h2 id="2017-04-21">2017-04-21</h2>
+
+<p>about network</p>
+
+<ul>
+<li>/etc/sysconfig/network-scripts/ifcfg-eth0</li>
+</ul>
+
+<pre><code>固定IPアドレスの場合。
+--------------------------------
+DEVICE=eth0
+BOOTPROTO=static
+BROADCAST=192.168.1.255
+HWADDR=00:1E:90:AC:94:6A
+IPADDR=192.168.1.11
+NETMASK=255.255.255.0
+NETWORK=192.168.1.0
+ONBOOT=yes
+--------------------------------
+
+
+DEVICE・・・デバイス名eth0 eth1等を設定
+BOOTPROTO・・・固定IPの場合:none,static DHCPでIP取得の場合:dhcpと設定
+BROADCAST・・・ブロードキャストアドレスの設定
+HWADDR・・・NICのMACアドレスを設定
+IPADDR・・・IPアドレスの指定
+NETMASK・・・サブネットマスクの設定
+NETWORK・・・ネットワークアドレスの設定
+ONBOOT・・・起動時に有効にするかどうか(yes/no) 
+
+</code></pre>
+
+<h2 id="2017-04-20">2017-04-20</h2>
+
+<p>rewrite git history (rm secret files)
+via
+* <a href="http://qiita.com/go_astrayer/items/6e39d3ab16ae8094496c">http://qiita.com/go_astrayer/items/6e39d3ab16ae8094496c</a>
+* <a href="http://qiita.com/wnoguchi/items/62f5e64ef2ae14b4f0ee">http://qiita.com/wnoguchi/items/62f5e64ef2ae14b4f0ee</a></p>
+
+<pre><code>
+# remove 
+git filter-branch --tree-filter &quot;rm -f [/path/to/file]&quot; HEAD
+git filter-branch --tree-filter &quot;rm -f -r [/path/to/directory] &quot; HEAD
+
+# gc
+git gc --aggressive --prune=now
+
+# push
+git push -f
+
+</code></pre>
+
+<p>nginx gzip on via <a href="http://qiita.com/cubicdaiya/items/2763ba2240476ab1d9dd">http://qiita.com/cubicdaiya/items/2763ba2240476ab1d9dd</a></p>
+
+<pre><code>gzip on;
+# add Content-Type with `gzip_types` directive, cause `gzip on` directive only compress text/html
+gzip_types text/css text/javascript;
+</code></pre>
+
+<h2 id="2017-04-05">2017-04-05</h2>
+
+<p>覚えておきたいlsコマンドのオプション15選
+* -aオプション：すべて表示
+* -lオプション：ファイルの詳細も表示する
+* -1オプション：リストを縦に並べる
+* -rオプション：逆順で表示する
+* -tオプション：更新時間順に並べる
+* -Sオプション：ファイルサイズ順でソートする
+* -Xオプション：ファイルを拡張子ごとにまとめる
+* -Rオプション：ディレクトリ内容を再帰的に表示する
+* &ndash;full-timeオプション：タイムスタンプの詳細を表示する
+* -mオプション：ファイル名をカンマで区切って表示する
+* -hオプション：単位を読みやすい形式で表示する
+* -kオプション：キロバイト単位で表示する
+* -iオプション：ファイル名の左にi-node番号を表示する
+* -Fオプション：情報の付加
+* &ndash;helpオプション：ヘルプの表示</p>
+
+<h2 id="2017-02-20">2017-02-20</h2>
+
+<p>docker (for mac) gc</p>
+
+<pre><code>docker rm $(docker ps -q -f 'status=exited')
+docker rmi $(docker images -q -f &quot;dangling=true&quot;)
+</code></pre>
+
+<h2 id="2017-02-09">2017-02-09</h2>
+
+<p>curl only shows headers via <a href="http://te2u.hatenablog.jp/entry/2015/08/04/001554">http://te2u.hatenablog.jp/entry/2015/08/04/001554</a></p>
+
+<pre><code>curl -s -D - http://example.com -o /dev/null
+</code></pre>
+
+<p>-s : silent mode
+-D : show headers
+-o : out responcebody to&hellip;</p>
+
+<h2 id="2017-02-07">2017-02-07</h2>
+
+<p>rm under s3 bucket</p>
+
+<pre><code>aws s3 rm s3://bucket-name/ --recursive
+</code></pre>
+
+<h2 id="2017-01-24">2017-01-24</h2>
+
+<p>about td-agent</p>
+
+<pre><code># conf dry-run
+sudo td-agent --dry-run -c /etc/td-agent/td-agent.conf
+# init
+sudo /etc/init.d/td-agent status (etc.)
+# log
+sudo tail -f /var/log/td-agent/td-agent.log
+</code></pre>
+
+<h2 id="2017-01-23">2017-01-23</h2>
+
+<p>log location of ec2 user-data</p>
+
+<pre><code>less /var/log/cloud-init-output.log
+</code></pre>
+
+<h2 id="2017-01-12">2017-01-12</h2>
+
+<pre><code>sudo td-agent-gem install fluent-plugin-rewrite-tag-filter
+sudo td-agent-gem install fluent-plugin-slack
+</code></pre>
+
+<h2 id="2017-01-11">2017-01-11</h2>
+
+<p>via
+* <a href="https://coreos.com/os/docs/latest/scheduling-tasks-with-systemd-timers.html">https://coreos.com/os/docs/latest/scheduling-tasks-with-systemd-timers.html</a>
+* <a href="http://stackoverflow.com/questions/29086918/docker-compose-to-coreos">http://stackoverflow.com/questions/29086918/docker-compose-to-coreos</a>
+* <a href="http://qiita.com/TakiTake@github/items/b66aeb1eb266f97fafe5">http://qiita.com/TakiTake@github/items/b66aeb1eb266f97fafe5</a></p>
+
+<p>auto start docker-compose on coreos</p>
+
+<pre><code>sudo coreos-cloudinit --from-file /path/to/cloud-config.yml
+</code></pre>
+
+<h2 id="2016-12-12">2016-12-12</h2>
+
+<p>via <a href="http://nekop.hatenablog.com/entry/2015/08/21/160436">http://nekop.hatenablog.com/entry/2015/08/21/160436</a>
+docker clean-up w/o error</p>
+
+<pre><code>docker ps -q -f status=exited | xargs --no-run-if-empty docker rm
+docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi
+</code></pre>
+
+<h2 id="2016-12-08">2016-12-08</h2>
+
+<p>exclude commented out and blank line</p>
+
+<pre><code>grep -v -e '#' -e '^$' ./httpd.conf
+</code></pre>
+
+<p>wc under multi dir/files</p>
+
+<pre><code>wc -l ./*/*.conf | sort | $PAGER
+</code></pre>
+
+<h2 id="2016-12-07">2016-12-07</h2>
+
+<p>show ruby configure options</p>
+
+<pre><code>ruby -r rbconfig -e 'puts RbConfig::CONFIG[&quot;configure_args&quot;]'
+</code></pre>
+
+<h2 id="2016-12-01">2016-12-01</h2>
+
+<p>destroy specific target with tf file via terraform</p>
+
+<pre><code># plan
+$ terraform plan -destroy -target=aws_efs_file_system.test -target=aws_efs_mount_target.test
+
+# destroy
+$ terraform destroy -target=aws_efs_file_system.test -target=aws_efs_mount_target.test
+</code></pre>
+
+<h2 id="2016-11-18">2016-11-18</h2>
+
+<p>erase specific git file/directory</p>
+
+<pre><code>file
+$ git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch filename' HEAD
+
+directory
+$ git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch dirname' HEAD
+
+push
+$ git push --force origin branch
+
+</code></pre>
+
+<h2 id="2016-11-01">2016-11-01</h2>
+
+<p>! not for production
+docker-compose on coreos
+via <a href="http://www.ericluwj.com/2015/10/20/installing-docker-compose-in-coreos.html">http://www.ericluwj.com/2015/10/20/installing-docker-compose-in-coreos.html</a>
+* sudo su -
+* mkdir -p /opt/bin
+* curl -L <a href="https://github.com/docker/compose/releases/download/X.Y.Z/docker-compose-`uname">https://github.com/docker/compose/releases/download/X.Y.Z/docker-compose-`uname</a> -s<code>-</code>uname -m` &gt; /opt/bin/docker-compose
+* chmod +x /opt/bin/docker-compose
+* that&rsquo;s it</p>
+
+<h2 id="2016-10-31">2016-10-31</h2>
+
+<p>coreos on idcf cloud</p>
+
+<ul>
+<li>add latest ISO(change URL from https to http)</li>
+<li>create server(name:core1) from ISO with newly created SSH Key</li>
+<li>access to <code>core1</code> via web console and type <code>sudo passwd core</code></li>
+<li>create public ip and add firewall rule , port forward to <code>core1</code></li>
+<li>ssh to <code>core1</code></li>
+<li>create cloud-config.yml</li>
+<li>install coreos to disk via <code>sudo coreos-install -d /dev/sda -C stable -c ./cloud-config.yml</code></li>
+</ul>
+
+<pre><code>#cloud-config
+
+coreos:
+ units:
+   -
+     name: docker.service
+     command: restart
+   -
+     name: settimezone.service
+     command: start
+     content: |
+       [Unit]
+       Description=Set Timezone
+       [Service]
+       ExecStart=/usr/bin/timedatectl set-timezone Asia/Tokyo
+       RemainAfterExit=yes
+       Type=oneshot
+</code></pre>
+
+<h2 id="2016-10-28">2016-10-28</h2>
+
+<p>how 2 get image via aws ecr on docker / docker-compose?</p>
+
+<ul>
+<li><code>aws ecr get-login</code> command provides <code>docker login</code> to aws ecr</li>
+<li>sample shell as follows</li>
+</ul>
+
+<pre><code># check credentails
+: &quot;${AWS_ACCESS_KEY_ID?env empty}&quot;
+: &quot;${AWS_SECRET_ACCESS_KEY?env empty}&quot;
+: &quot;${AWS_DEFAULT_REGION?env empty}&quot;
+
+echo &quot;docker login via aws ecr command&quot;
+#eval &quot;$(docker-machine env default)&quot;
+$(aws ecr get-login --region $AWS_DEFAULT_REGION)
+</code></pre>
+
+<p>after <code>docker login</code> passes, docker / docker-compose can handle docker images on aws ecr.
+<strong>token via <code>get-login</code> command is valid for only 12 hours.</strong></p>
+
+<h2 id="2016-10-24">2016-10-24</h2>
+
+<p>get stdin in shell</p>
+
+<pre><code>while read line
+do
+	result=$result$line
+done &lt;  &quot;${1:-/dev/stdin}&quot;
+
+</code></pre>
+
+<p>trim last charactor of variables</p>
+
+<pre><code>result=hogehoge
+echo ${result:0:${#result}-1}
+</code></pre>
+
+<h2 id="2016-10-20">2016-10-20</h2>
+
+<p>terraform cheetsheat</p>
+
+<ul>
+<li>terraform loads all of <code>.tf</code> file</li>
+<li><code>terraform plan</code> shows what changes will apply to infra (aka dry-run)</li>
+<li><code>terraform apply</code> creates &ldquo;real&rdquo; resources</li>
+<li><code>terraform show</code> shows actual infra status</li>
+<li><code>terraform plan -destroy</code> shows what resources will destroy</li>
+<li><code>terraform destroy</code> destroy infra</li>
+</ul>
+
+<h2 id="2016-08-04">2016-08-04</h2>
+
+<p>docker entrypoint override</p>
+
+<ul>
+<li>overrider with &ndash;entrypoint flag</li>
+<li>command with end parameter</li>
+</ul>
+
+<pre><code>$ docker run -it --entrypoint /bin/consul gliderlabs/consul-server version
+Consul v0.6.4
+...
+</code></pre>
+
+<h2 id="2016-07-15">2016-07-15</h2>
+
+<p>rbenv init</p>
+
+<pre><code>eval &quot;$(rbenv init -)&quot;
+rbenv rehash
+gem install hogehoge
+</code></pre>
+
+<h2 id="2016-06-27">2016-06-27</h2>
+
+<p>personal memo</p>
+
+<ul>
+<li><a href="https://talks.golang.org/2012/10things.slide">https://talks.golang.org/2012/10things.slide</a></li>
+<li><a href="https://www.appneta.com/blog/automated-testing-with-docker/">https://www.appneta.com/blog/automated-testing-with-docker/</a></li>
+<li><a href="http://developers.linecorp.com/blog/ja/?p=3392">http://developers.linecorp.com/blog/ja/?p=3392</a></li>
+<li><a href="https://thepracticalsysadmin.com/ecs-cluster-turnup-with-coreos-and-terraform/">https://thepracticalsysadmin.com/ecs-cluster-turnup-with-coreos-and-terraform/</a></li>
+<li><a href="http://postd.cc/eight-docker-development-patterns/">http://postd.cc/eight-docker-development-patterns/</a></li>
+<li><a href="http://yut.hatenablog.com/entry/20130617/1371425713">http://yut.hatenablog.com/entry/20130617/1371425713</a></li>
+</ul>
+
+<h2 id="2016-06-07">2016-06-07</h2>
+
+<p>set timezone and ecs-agent to coreos</p>
+
+<ul>
+<li>userdata</li>
+</ul>
+
+<pre><code>#cloud-config
+
+coreos:
+ units:
+   -
+     name: settimezone.service
+     command: start
+     content: |
+       [Unit]
+       Description=Set Timezone
+       [Service]
+       ExecStart=/usr/bin/timedatectl set-timezone Asia/Tokyo
+       RemainAfterExit=yes
+       Type=oneshot
+   -
+     name: amazon-ecs-agent.service
+     command: start
+     runtime: true
+     content: |
+       [Unit]
+       Description=AWS ECS Agent
+       Documentation=https://docs.aws.amazon.com/AmazonECS/latest/developerguide/
+       Requires=docker.socket
+       After=docker.socket
+       [Service]
+       Environment=ECS_CLUSTER=your-ecs-cluster-name
+       Environment=ECS_LOGLEVEL=info
+       Environment=ECS_VERSION=latest
+       Restart=on-failure
+       RestartSec=30
+       RestartPreventExitStatus=5
+       SyslogIdentifier=ecs-agent
+       ExecStartPre=-/bin/mkdir -p /var/log/ecs /var/ecs-data /etc/ecs
+       ExecStartPre=-/usr/bin/touch /etc/ecs/ecs.config
+       ExecStartPre=-/usr/bin/docker kill ecs-agent
+       ExecStartPre=-/usr/bin/docker rm ecs-agent
+       ExecStartPre=/usr/bin/docker pull amazon/amazon-ecs-agent:${ECS_VERSION}
+       ExecStart=/usr/bin/docker run --name ecs-agent \
+                                     --env-file=/etc/ecs/ecs.config \
+                                     --volume=/var/run/docker.sock:/var/run/docker.sock \
+                                     --volume=/var/log/ecs:/log \
+                                     --volume=/var/ecs-data:/data \
+                                     --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro \
+                                     --volume=/run/docker/execdriver/native:/var/lib/docker/execdriver/native:ro \
+                                     --publish=127.0.0.1:51678:51678 \
+                                     --env=ECS_LOGFILE=/log/ecs-agent.log \
+                                     --env=ECS_LOGLEVEL=${ECS_LOGLEVEL} \
+                                     --env=ECS_DATADIR=/data \
+                                     --env=ECS_CLUSTER=${ECS_CLUSTER} \
+                                     --env=ECS_AVAILABLE_LOGGING_DRIVERS=[\&quot;json-file\&quot;,\&quot;syslog\&quot;,\&quot;fluentd\&quot;,\&quot;awslogs\&quot;] \
+                                     amazon/amazon-ecs-agent:${ECS_VERSION}
+</code></pre>
+
+<h2 id="2016-06-06">2016-06-06</h2>
+
+<p>docker security check</p>
+
+<ul>
+<li>run your docker containers e.g. via docker-compose</li>
+<li>then git clone <a href="https://github.com/docker/docker-bench-security.git">https://github.com/docker/docker-bench-security.git</a></li>
+<li>cd docker-bench-security</li>
+<li>docker-compose run &ndash;rm docker-bench-security</li>
+<li>docker-bench-security prints security check result via stdout</li>
+</ul>
+
+<h2 id="2016-05-27">2016-05-27</h2>
+
+<p>slack time signal</p>
+
+<pre><code>/remind #channel to morning standup at 10am every weekday
+/remind #channel to evening standup at 5pm every weekday
+/remind list
+</code></pre>
+
+<h2 id="2016-05-24">2016-05-24</h2>
+
+<p>install redis-cli on ec2</p>
+
+<pre><code>$ sudo yum install -y gcc
+$ wget http://download.redis.io/redis-stable.tar.gz
+$ tar xvzf redis-stable.tar.gz
+$ cd redis-stable
+$ make
+$ src/redis-cli -h %elasticacheendpoint% -p 6379
+</code></pre>
+
+<h2 id="2016-05-17">2016-05-17</h2>
+
+<p>setting timezone at alpine linux on docker</p>
+
+<pre><code>
+FROM gliderlabs/alpine:latest
+
+RUN apk --no-cache add tzdata &amp;&amp; \
+  cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime &amp;&amp; \
+  apk del tzdata 
+
+</code></pre>
+
+<h2 id="2016-05-11">2016-05-11</h2>
+
+<p>mysql(RDS or Aurora) dump restore from local file</p>
+
+<pre><code>$ ls
+dump.sql
+
+$ mysql -h your.rds.amazonaws.com -P 3306 -u userid -p
+mysql&gt; source dump.sql
+</code></pre>
+
+<h2 id="2016-05-10">2016-05-10</h2>
+
+<p>aws ecs service limits</p>
+
+<p>via
+<a href="http://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/service_limits.html">http://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/service_limits.html</a></p>
+
+<p>The following table provides the default limits for Amazon ECS for an AWS account which can be changed. For more information, see AWS Service Limitsin the Amazon Web Services General Reference.</p>
+
+<p>Resource    Default Limit
+Number of clusters per region, per account  1000
+Number of container instances per cluster   1000
+Number of services per cluster  500</p>
+
+<p>The following table provides other limitations for Amazon ECS that cannot be changed.</p>
+
+<p>Resource    Default Limit
+Number of load balancers per service    1
+Number of tasks per service (the desired count) 1000
+Number of tasks launched (count) per run-task   10
+Number of container instances per start-task    10
+Throttle on container instance registration rate    1 per second / 60 max per minute
+Task definition size limit  32 KiB
+Task definition max containers  10
+Throttle on task definition registration rate   1 per second / 60 max per minute</p>
+
+<h2 id="2016-05-09">2016-05-09</h2>
+
+<p>running coreos on aws ecs</p>
+
+<p>via
+* <a href="https://coreos.com/os/docs/latest/booting-on-ecs.html">https://coreos.com/os/docs/latest/booting-on-ecs.html</a>
+* <a href="https://coreos.com/os/docs/latest/booting-on-ec2.html">https://coreos.com/os/docs/latest/booting-on-ec2.html</a></p>
+
+<ul>
+<li>on ec2 console</li>
+<li>create launchconfiguration with coreos ami and user-data</li>
+</ul>
+
+<p>user-data are as follows</p>
+
+<ul>
+<li>get etcd token via <a href="https://discovery.etcd.io/new?size=X">https://discovery.etcd.io/new?size=X</a></li>
+<li>set ECS_CLUSTER env by ecs cluster name</li>
+<li>start amazon-ecs-agent.service</li>
+</ul>
+
+<pre><code>#cloud-config
+
+coreos:
+  etcd2:
+    # generate a new token for each unique cluster from https://discovery.etcd.io/new?size=3
+    # specify the initial size of your cluster with ?size=X
+    discovery: https://discovery.etcd.io/a4ca4dd8ac25ff375ff9439c929b9eb3
+    # multi-region and multi-cloud deployments need to use $public_ipv4
+    advertise-client-urls: http://$private_ipv4:2379,http://$private_ipv4:4001
+    initial-advertise-peer-urls: http://$private_ipv4:2380
+    # listen on both the official ports and the legacy ports
+    # legacy ports can be omitted if your application doesn't depend on them
+    listen-client-urls: http://0.0.0.0:2379,http://0.0.0.0:4001
+    listen-peer-urls: http://$private_ipv4:2380,http://$private_ipv4:7001
+  units:
+    - name: etcd2.service
+      command: start
+    - name: fleet.service
+      command: start
+    - name: amazon-ecs-agent.service
+      command: start
+      runtime: true
+      content: |
+       [Unit]
+       Description=AWS ECS Agent
+       Documentation=https://docs.aws.amazon.com/AmazonECS/latest/developerguide/
+       Requires=docker.socket
+       After=docker.socket
+       [Service]
+       Environment=ECS_CLUSTER=my-ecs-cluster-name
+       Environment=ECS_LOGLEVEL=info
+       Environment=ECS_VERSION=latest
+       Restart=on-failure
+       RestartSec=30
+       RestartPreventExitStatus=5
+       SyslogIdentifier=ecs-agent
+       ExecStartPre=-/bin/mkdir -p /var/log/ecs /var/ecs-data /etc/ecs
+       ExecStartPre=-/usr/bin/touch /etc/ecs/ecs.config
+       ExecStartPre=-/usr/bin/docker kill ecs-agent
+       ExecStartPre=-/usr/bin/docker rm ecs-agent
+       ExecStartPre=/usr/bin/docker pull amazon/amazon-ecs-agent:${ECS_VERSION}
+       ExecStart=/usr/bin/docker run --name ecs-agent \
+                                     --env-file=/etc/ecs/ecs.config \
+                                     --volume=/var/run/docker.sock:/var/run/docker.sock \
+                                     --volume=/var/log/ecs:/log \
+                                     --volume=/var/ecs-data:/data \
+                                     --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro \
+                                     --volume=/run/docker/execdriver/native:/var/lib/docker/execdriver/native:ro \
+                                     --publish=127.0.0.1:51678:51678 \
+                                     --env=ECS_LOGFILE=/log/ecs-agent.log \
+                                     --env=ECS_LOGLEVEL=${ECS_LOGLEVEL} \
+                                     --env=ECS_DATADIR=/data \
+                                     --env=ECS_CLUSTER=${ECS_CLUSTER} \
+                                     amazon/amazon-ecs-agent:${ECS_VERSION}
+</code></pre>
+
+<ul>
+<li><p>create elb and autoscaling</p></li>
+
+<li><p>on ecs console</p></li>
+
+<li><p>create ecs cluster</p></li>
+
+<li><p>start service</p></li>
+</ul>
+
+<h2 id="2016-04-28">2016-04-28</h2>
+
+<p>docker network time out</p>
+
+<pre><code>docker-machine restart default
+eval $(docker-machine env default)
+</code></pre>
+
+<h2 id="2016-04-27">2016-04-27</h2>
+
+<p><a href="http://yuuki.hatenablog.com/entry/diy-container">http://yuuki.hatenablog.com/entry/diy-container</a></p>
+
+<h2 id="2016-04-26">2016-04-26</h2>
+
+<p><a href="https://github.com/progrium/entrykit">https://github.com/progrium/entrykit</a></p>
+
+<h2 id="2016-04-25">2016-04-25</h2>
+
+<p>sick sick</p>
+
+<h2 id="2016-04-24">2016-04-24</h2>
+
+<p>i&rsquo;m sick</p>
+
+<h2 id="2016-04-23">2016-04-23</h2>
+
+<p><a href="https://play.golang.org/p/TYOd9ELo2m">https://play.golang.org/p/TYOd9ELo2m</a></p>
+
+<p><a href="https://play.golang.org/p/Xs2SQ59gez">https://play.golang.org/p/Xs2SQ59gez</a></p>
+
+<p><a href="http://play.golang.org/p/VdKMLKMYse">http://play.golang.org/p/VdKMLKMYse</a></p>
+
+<p><a href="http://play.golang.org/p/sCcfzFuzqR">http://play.golang.org/p/sCcfzFuzqR</a></p>
+
+<p><a href="https://play.golang.org/p/tlaYWTKXGr">https://play.golang.org/p/tlaYWTKXGr</a></p>
+
+<p><a href="https://play.golang.org/p/DoBYGQruo6">https://play.golang.org/p/DoBYGQruo6</a></p>
+
+<h2 id="2016-04-22">2016-04-22</h2>
+
+<ul>
+<li><p>golang testing</p>
+
+<ul>
+<li>via <a href="https://medium.com/@benbjohnson/structuring-tests-in-go-46ddee7a25c#.x9lf1gida">https://medium.com/@benbjohnson/structuring-tests-in-go-46ddee7a25c#.x9lf1gida</a></li>
+<li>no frameworks</li>
+<li>&ldquo;underscore test&rdquo; file</li>
+<li>test-specific types
+*</li>
+<li><a href="https://speakerdeck.com/mitchellh/advanced-testing-with-go">https://speakerdeck.com/mitchellh/advanced-testing-with-go</a> is also fine slide for testing</li>
+</ul></li>
+
+<li><p>i love test</p></li>
+</ul>
+
+<h2 id="2016-04-21">2016-04-21</h2>
+
+<pre><code>package main
+ 
+import(
+  &quot;fmt&quot;
+  &quot;reflect&quot;
+)
+
+// Data Model
+type User struct {
+  Id  int
+  Name string
+  Origin string
+  Query func()
+  Tags map[string]string
+  Fields []string
+}
+ 
+func main(){
+
+  list := GetAttrName(&amp;User{})
+  // slice with ... options passes ... parameters
+  PrintName(list...)
+
+}
+
+// GetAttrName returns struct attributes name
+func GetAttrName(m interface{}) ([]string) {
+
+  typ := reflect.TypeOf(m)
+  typ = typ.Elem()
+
+  attrs := []string{}
+
+  // loop through the struct's fields and set the map
+  for i := 0; i &lt; typ.NumField(); i++ {
+    attrs = append(attrs,typ.Field(i).Name)
+  }
+
+  return attrs
+}
+
+// PrintName passing arguments to ... parameters
+func PrintName(list ...string){
+  for _, name := range list {
+    fmt.Println(name)
+  }
+}
+</code></pre>
+
+<h2 id="2016-04-20">2016-04-20</h2>
+
+<ul>
+<li>sha256</li>
+</ul>
+
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;crypto/sha256&quot;
+	&quot;strconv&quot;
+)
+
+func main() {
+	for i := 1; i &lt;= 100; i++ {
+		si := strconv.Itoa(i)
+		fmt.Printf(&quot;SHA-256 : %x\n&quot;, sha256.Sum256([]byte(si)))
+	}
+}
+
+</code></pre>
+
+<h2 id="2016-04-19">2016-04-19</h2>
+
+<ul>
+<li>neovim / deoplete error
+
+<ul>
+<li><a href="https://github.com/Shougo/deoplete.nvim/issues/223">https://github.com/Shougo/deoplete.nvim/issues/223</a></li>
+</ul></li>
+</ul>
+
+<pre><code>Failed to load python3 host. You can try to see what happened by starting Neovim with the environment variable $NVIM_PYTHON_LOG_FILE set to a file and
+ opening the generated log file. Also, the host stderr will be available in Neovim log, so it may contain useful information. See also ~/.nvimlog.
+</code></pre>
+
+<p>below script fixed my issue</p>
+
+<pre><code>pip3 --no-cache-dir install -U neovim
+</code></pre>
+
+<h2 id="2016-04-18">2016-04-18</h2>
+
+<ul>
+<li>go dynamic json</li>
+</ul>
+
+<pre><code>package main
+
+import (
+  &quot;fmt&quot;
+  &quot;strconv&quot;
+  &quot;encoding/json&quot;
+)
+
+type Hoge struct {
+  Name string `json:name`
+  Tags map[string]string `json:tags`
+}
+
+func main() {
+  m := map[string]string{}
+  for i := 1; i &lt; 6; i ++ {
+    ii := strconv.Itoa(i)
+    m[&quot;tag&quot;+ii] = &quot;text&quot;+ii
+  }
+  b, _ := json.Marshal(m)
+
+  fmt.Println(m)
+  // map[tag3:text3 tag4:text4 tag5:text5 tag1:text1 tag2:text2]
+  fmt.Printf(&quot;%s\n&quot;,b)
+  // {&quot;tag1&quot;:&quot;text1&quot;,&quot;tag2&quot;:&quot;text2&quot;,&quot;tag3&quot;:&quot;text3&quot;,&quot;tag4&quot;:&quot;text4&quot;,&quot;tag5&quot;:&quot;text5&quot;}
+
+  h := Hoge{Name:&quot;hoge&quot;,Tags:m}
+  b2, _ := json.Marshal(h)
+
+  fmt.Println(h)
+  // {hoge map[tag1:text1 tag2:text2 tag3:text3 tag4:text4 tag5:text5]}
+  fmt.Printf(&quot;%s\n&quot;,string(b2))
+  // {&quot;Name&quot;:&quot;hoge&quot;,&quot;Tags&quot;:{&quot;tag1&quot;:&quot;text1&quot;,&quot;tag2&quot;:&quot;text2&quot;,&quot;tag3&quot;:&quot;text3&quot;,&quot;tag4&quot;:&quot;text4&quot;,&quot;tag5&quot;:&quot;text5&quot;}}
+
+}
+</code></pre>
+
+<ul>
+<li>create autoscaling</li>
+</ul>
+
+<h2 id="2016-04-17">2016-04-17</h2>
+
+<ul>
+<li>hubot lgtm</li>
+</ul>
+
+<p><a href="https://github.com/bouzuya/hubot-lgtm">https://github.com/bouzuya/hubot-lgtm</a></p>
+
+<h2 id="2016-04-16">2016-04-16</h2>
+
+<ul>
+<li>go-kit</li>
+</ul>
+
+<p><a href="http://peter.bourgon.org/go-kit/">http://peter.bourgon.org/go-kit/</a></p>
+
+<h2 id="2016-04-15">2016-04-15</h2>
+
+<ul>
+<li><p>security checkpoint</p>
+
+<ul>
+<li>firewall with port</li>
+<li>ssh setting /sshd_config</li>
+<li>ssl</li>
+<li><a href="https://www.ssllabs.com/ssltest/">https://www.ssllabs.com/ssltest/</a> でチェックできる</li>
+<li>response header</li>
+<li>data暗号化</li>
+<li>tool</li>
+<li>OWASP ZedAttackProxy</li>
+<li>OpenCVE</li>
+</ul></li>
+
+<li><p>mkr with jq</p></li>
+</ul>
+
+<pre><code># 無名roleを抽出
+mkr hosts | jq '.[] | { name: .name, id: .id, role: .roleFullnames  } | select(.role==null)'
+</code></pre>
+
+<h2 id="2016-04-14">2016-04-14</h2>
+
+<p>via <a href="https://github.com/golang/go/issues/14795">https://github.com/golang/go/issues/14795</a></p>
+
+<ul>
+<li>go binary failed to run on 2016.03 amazon linux ami</li>
+<li>seems to GOARCH=i386 option causes this error</li>
+</ul>
+
+<h2 id="2016-04-13">2016-04-13</h2>
+
+<p>via <a href="http://stackoverflow.com/questions/21917661/can-you-connect-to-amazon-elasticache-redis-outside-of-amazon">http://stackoverflow.com/questions/21917661/can-you-connect-to-amazon-elasticache-redis-outside-of-amazon</a></p>
+
+<ul>
+<li>want to redis-cli from local to aws elasticache(redis)</li>
+<li>ssh port forwarding do the trick</li>
+</ul>
+
+<pre><code>ssh -f -N -L6379:&lt;your redis node endpoint&gt;:6379 &lt;your EC2 node that you use to connect to redis&gt;
+</code></pre>
+
+    </div>
+    
+        <div class="nav-left">
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fexample.com%2fpost%2freadme%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fexample.com%2fpost%2freadme%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fexample.com%2fpost%2freadme%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status= - https%3a%2f%2fexample.com%2fpost%2freadme%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fexample.com%2fpost%2freadme%2f&title=" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    
+    </div>
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'shortname';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dockerfile.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-33278616-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>

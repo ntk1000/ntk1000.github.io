@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="keyword 1, keyword 2, keyword 3" name="keywords">
+<meta content="ntk1000" name="author">
+<meta property="og:title" content="12factorapp - ntk1000 zlog">
+<meta property="og:url" content="https://example.com/post/2016-02-04-12factorapp/">
+<meta property="og:description" content="Your description here">
+<meta property="og:type" content="website" />
+<title>12factorapp | ntk1000 zlog</title>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://example.com/css/style.css">
+<link rel="shortcut icon" href="https://example.com/wave.ico">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+
+</head>
+
+<body>
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://example.com"><h1 class="title is-4">ntk1000 zlog</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://linkedin.com/in/jun-asano-72648213b" target="_blank">
+            <span class="icon">
+              <i class="fa fa-linkedin-square"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="/index.xml" target="_blank">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">12factorapp</h1>
+    <h2 class="subtitle is-5">January 1, 0001 by ntk1000</h2>
+    
+    <div class="content">
+      <p><a href="http://12factor.net/ja/">12 factor app</a></p>
+
+<ol>
+<li>コードベース
+
+<ul>
+<li>コードベースとアプリケーションは常に1対1、デプロイは環境(開発、ステージング、本番等)毎に複数存在</li>
+<li>共通のコードはライブラリ化する</li>
+</ul></li>
+<li>依存関係
+
+<ul>
+<li>依存関係の明示と分離 ex. package.json, gem</li>
+<li>システム固有の暗黙的なツール(curlなど)を前提にせず、必要な場合はvendor appとして内包する</li>
+</ul></li>
+<li>設定
+
+<ul>
+<li>デプロイ毎に異なる設定をコード内に格納するのでなく、環境変数に格納する</li>
+<li>ソースをgithub等、ossとして公開状態で管理するのであればcredentialは<strong>絶対コード内に格納してはいけない</strong></li>
+<li>credential, db接続情報、変動があるものは環境変数で読み込む形でコード化する</li>
+</ul></li>
+<li>バックエンドサービス
+
+<ul>
+<li>DB, Storage, SMTP等デタッチアタッチ可能なリソースとして扱う</li>
+<li>すべてURLで扱う</li>
+</ul></li>
+<li>ビルド、リリース、ラン
+
+<ul>
+<li>それぞれのステージを厳密に分離 ビルド-&gt;リリース-&gt;ラン</li>
+<li>ビルド: コードを実行可能な形にする、依存関係の整理、コンパイルなど</li>
+<li>リリース: ビルドとデプロイに関する設定の整理、サーバーで実行できる状態かつロールバック機能を担保する ex.fabric, capistrano</li>
+<li>ラン: サーバー上でアプリを起動する、実行中のコードを変更することは<strong>してはいけない</strong></li>
+</ul></li>
+<li>プロセス
+
+<ul>
+<li>ステートレス、シェアードナッシングなプロセスとしてアプリを実行する</li>
+<li>状態はDBなどのサービスに持たせる</li>
+<li>memchacheやredisでのキャッシュ管理</li>
+</ul></li>
+<li>ポートバインディング
+
+<ul>
+<li>Webアプリをポートにバインドすることでhttpサービスとして公開する</li>
+<li>1 container 1 service</li>
+</ul></li>
+<li>並行性
+
+<ul>
+<li>プロセスモデル採用によるスケールアウトの実現</li>
+<li>スレッドではなく、プロセスを用いてスケールアウトする</li>
+<li>各プロセスが内部でスレッドやasync/eventedを用いて多重化するのはok</li>
+</ul></li>
+<li>廃棄容易性
+
+<ul>
+<li>高速な起動とグレースフルシャットダウンの両立により堅牢性を高める</li>
+<li>起動時間を最小化することによりリリースやスケールアウト時のアジリティを高める</li>
+<li>プロセス終了時の後処理をきちんとする、新しいリクエストを受けるのをやめ、現在進行している処理は正常に完了させる</li>
+<li>冪等性を担保した設計</li>
+<li>リクエストの接続が失われても裏で再接続できるような設計</li>
+</ul></li>
+<li>開発本番一致
+
+<ul>
+<li>開発/本番環境のギャップを小さく保つ</li>
+<li>時間のギャップ: リリース対象のコードは数時間・数分後にはデプロイ可能な状態とする</li>
+<li>人材のギャップ: リリース対象コードを書いた開発者がデプロイ、リリース後の挙動を見守る</li>
+<li>ツールのギャップ: 開発/本番環境をできるだけ一致させる(利用スタックの統一)</li>
+</ul></li>
+<li>ログ
+
+<ul>
+<li>ログをイベントストリームとして扱う</li>
+<li>アプリはstdoutにログを吐くだけ</li>
+<li>実行中のアプリの挙動を可視化、アーカイブ化できるようなログルーターの利用(ex. fluent)</li>
+</ul></li>
+<li>管理プロセス
+
+<ul>
+<li>管理タスクを1回限りのプロセスとして実行する</li>
+<li>c.f. &ldquo;heroku run&rdquo;, &ldquo;rails c&rdquo;, &ldquo;rails r&rdquo;, &ldquo;rake db:migrate&rdquo;</li>
+</ul></li>
+</ol>
+
+    </div>
+    
+        <div class="nav-left">
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fexample.com%2fpost%2f2016-02-04-12factorapp%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fexample.com%2fpost%2f2016-02-04-12factorapp%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fexample.com%2fpost%2f2016-02-04-12factorapp%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=12factorapp - https%3a%2f%2fexample.com%2fpost%2f2016-02-04-12factorapp%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fexample.com%2fpost%2f2016-02-04-12factorapp%2f&title=12factorapp" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    
+    </div>
+    
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <aside><div id="disqus_thread"></div></aside>
+    <script type="text/javascript">
+      var disqus_shortname = 'shortname';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dockerfile.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-33278616-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
