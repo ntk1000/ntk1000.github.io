@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.40" />
+	<meta name="generator" content="Hugo 0.41" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="keyword 1, keyword 2, keyword 3" name="keywords">
@@ -69,6 +69,24 @@
 
 <section class="section">
   <div class="container">
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-10-31/">oct 2016 log</a></h1>
+      <h2 class="subtitle is-5">October 31, 2016</h2>
+      
+      <div class="content">
+        2016-10-28 how 2 get image via aws ecr on docker / docker-compose?
+ aws ecr get-login command provides docker login to aws ecr sample shell as follows  # check credentails : &quot;${AWS_ACCESS_KEY_ID?env empty}&quot; : &quot;${AWS_SECRET_ACCESS_KEY?env empty}&quot; : &quot;${AWS_DEFAULT_REGION?env empty}&quot; echo &quot;docker login via aws ecr command&quot; #eval &quot;$(docker-machine env default)&quot; $(aws ecr get-login --region $AWS_DEFAULT_REGION)  after docker login passes, docker / docker-compose can handle docker images on aws ecr.
+        
+        ...<a class="button is-link" href="https://ntk1000.github.io/post/2016-10-31/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
     
     <article>
       <h1 class="title"><a href="https://ntk1000.github.io/post/2016-08-31/">aug 2016 log</a></h1>
@@ -219,16 +237,6 @@ production loadbalancer -&gt; nginx -&gt; redis(cache) -&gt; webapp
       </div>
     </article>
     
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-02-02-febmemo/">memo</a></h1>
-      <h2 class="subtitle is-5">February 2, 2016</h2>
-      
-      <div class="content">
-         done with docker ecosystem  create each container via Dockerfile set every containers up and connect with port via docker-compose.yml  think about hashicorp tools  Vagrant or Packer alternate with Dockerfile Terraform alternate with docker-compose  
-        
-      </div>
-    </article>
-    
   </div>
 </section>
 <section class="section">
@@ -281,9 +289,13 @@ production loadbalancer -&gt; nginx -&gt; redis(cache) -&gt; webapp
 
 
 <script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-33278616-2', 'auto');
-ga('send', 'pageview');
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-33278616-2', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 <script async src='//www.google-analytics.com/analytics.js'></script>
 

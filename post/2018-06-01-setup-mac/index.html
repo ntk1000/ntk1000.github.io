@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="keyword 1, keyword 2, keyword 3" name="keywords">
+<meta content="ntk1000" name="author">
+<meta property="og:title" content="setup mac for 2times - ntk1000 zlog">
+<meta property="og:url" content="https://ntk1000.github.io/post/2018-06-01-setup-mac/">
+<meta property="og:description" content="Your description here">
+<meta property="og:type" content="website" />
+<title>setup mac for 2times | ntk1000 zlog</title>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<link rel="stylesheet" href="https://ntk1000.github.io/css/style.css">
+<link rel="shortcut icon" href="https://ntk1000.github.io/wave.ico">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+
+</head>
+
+<body>
+<section class="section">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="nav-item" href="https://ntk1000.github.io"><h1 class="title is-4">ntk1000 zlog</h1></a>
+      </div>
+      <div class="nav-right">
+        <nav class="nav-item level is-mobile">
+          
+          <a class="level-item" href="https://github.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://twitter.com/ntk1000" target="_blank">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://linkedin.com/in/jun-asano-72648213b" target="_blank">
+            <span class="icon">
+              <i class="fa fa-linkedin-square"></i>
+            </span>
+          </a>
+          
+          <a class="level-item" href="https://ntk1000.github.io/index.xml" target="_blank">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+          </a>
+          
+        </nav>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">setup mac for 2times</h1>
+    <h2 class="subtitle is-5">June 1, 2018 by ntk1000</h2>
+    
+    <div class="content">
+      <p>仕事で使ってたmacが壊れた。</p>
+
+<p>具体的にはバッテリー駆動になると突然落ちる頻度が多くなっていた。
+チェックプログラム走らせたらservice batteryと出て、要は修理が必要ということだったので
+代用機に作業環境を移行したのち、修理に出してきた。</p>
+
+<p>代用機に移行する過程で、諸々環境構築のセットアップを見直したいなと思っていたので
+この機会に整理した。</p>
+
+<p>dotfiles</p>
+
+<pre><code>.DEFAULT_GOAL := help
+
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST)  | awk 'BEGIN {FS = &quot;:.*?## &quot;}; {printf &quot;\033[36m%-30s\033[0m %s\n&quot;, $$1, $$2}'
+
+all: ## deploy all dotfiles
+	[ -d ~/bin] || mkdir -p ~/bin
+	[ -d ~/pkg] || mkdir -p ~/pkg
+	[ -d ~/src] || mkdir -p ~/src
+	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
+	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
+	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
+
+clean: ## clean dotfiles
+	[ -f ~/.vimrc ] || rm ~/.vimrc
+	[ -f ~/.zshrc ] || rm ~/.zshrc
+	[ -f ~/.gitconfig ] || rm ~/.gitconfig
+
+brew: ## setup homebrew via Brewfile
+	/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+	brew bundle cleanup
+	brew bundle
+
+vim: ## install plug.vim
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+shell: ## setup zsh as default shell
+	sudo sh -c &quot;grep -q '/usr/local/bin/zsh' /etc/shells || echo '/usr/local/bin/zsh' &gt;&gt; /etc/shells&quot;
+	sudo chsh -s /usr/local/bin/zsh
+
+defaluts: ## setup defaults write
+	defaults write com.apple.dock orientation -string &quot;left&quot;
+	defaults write com.apple.dock autohide -bool true
+	defaults write com.apple.dock tilesize -int 30
+	killall Dock
+
+.PHONY: all
+</code></pre>
+
+<p>前はansibleでやってたのだけど、ansibleを入れる手順とかansibleの仕様変更とか少し放置するとすぐ動かなくなっていたので
+単純なshellに書き換えた
+冪等性は担保できないものの、シンプルさを優先しようという判断</p>
+
+<p>修理から戻ってきたmacは幸い元データそのままだったけど、
+せっかく作ったのでクリーンインストールして環境構築し直した</p>
+
+<p>なのでこの数週間で２回macをセットアップしたことになる</p>
+
+<p>ほか、手作業でやったこと</p>
+
+<ul>
+<li>app storeからdisplay menuをいれる</li>
+<li>caps keyをcontrol keyに置き換える</li>
+<li>shiftitのキーバインドを設定する</li>
+</ul>
+
+<p>TODO</p>
+
+<ul>
+<li>makeでhomebrewをいれるone linerが動かなかった</li>
+<li>makeでlogin shellを変える処理が動かなかった</li>
+</ul>
+
+    </div>
+    
+        <div class="nav-left">
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-06-01-setup-mac%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-06-01-setup-mac%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-06-01-setup-mac%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=setup%20mac%20for%202times - https%3a%2f%2fntk1000.github.io%2fpost%2f2018-06-01-setup-mac%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-06-01-setup-mac%2f&title=setup%20mac%20for%202times" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    
+    </div>
+    
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p></p>
+  </div>
+</section>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js" integrity="sha256-+bhVTaRmJ/c07eV80nU8gD2cBBF0rYkf1txqXlrbvb0=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/go.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dockerfile.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-33278616-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>

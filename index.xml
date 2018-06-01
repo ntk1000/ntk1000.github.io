@@ -6,10 +6,23 @@
     <description>Recent content on ntk1000 zlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 02 May 2018 21:38:22 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 01 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://ntk1000.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>setup mac for 2times</title>
+      <link>https://ntk1000.github.io/post/2018-06-01-setup-mac/</link>
+      <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://ntk1000.github.io/post/2018-06-01-setup-mac/</guid>
+      <description>仕事で使ってたmacが壊れた。
+具体的にはバッテリー駆動になると突然落ちる頻度が多くなっていた。 チェックプログラム走らせたらservice batteryと出て、要は修理が必要ということだったので 代用機に作業環境を移行したのち、修理に出してきた。
+代用機に移行する過程で、諸々環境構築のセットアップを見直したいなと思っていたので この機会に整理した。
+dotfiles
+.DEFAULT_GOAL := help help: @grep -E &#39;^[a-zA-Z_-]+:.*?## .*$$&#39; $(MAKEFILE_LIST) | awk &#39;BEGIN {FS = &amp;quot;:.*?## &amp;quot;}; {printf &amp;quot;\033[36m%-30s\033[0m %s\n&amp;quot;, $$1, $$2}&#39; all: ## deploy all dotfiles [ -d ~/bin] || mkdir -p ~/bin [ -d ~/pkg] || mkdir -p ~/pkg [ -d ~/src] || mkdir -p ~/src [ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc [ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.</description>
+    </item>
     
     <item>
       <title>re create blog</title>

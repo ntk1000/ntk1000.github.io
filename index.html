@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.40" />
+	<meta name="generator" content="Hugo 0.41" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="keyword 1, keyword 2, keyword 3" name="keywords">
@@ -69,6 +69,27 @@
 
 <section class="section">
   <div class="container">
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2018-06-01-setup-mac/">setup mac for 2times</a></h1>
+      <h2 class="subtitle is-5">June 1, 2018</h2>
+      
+      <div class="content">
+        仕事で使ってたmacが壊れた。
+具体的にはバッテリー駆動になると突然落ちる頻度が多くなっていた。 チェックプログラム走らせたらservice batteryと出て、要は修理が必要ということだったので 代用機に作業環境を移行したのち、修理に出してきた。
+代用機に移行する過程で、諸々環境構築のセットアップを見直したいなと思っていたので この機会に整理した。
+dotfiles
+.DEFAULT_GOAL := help help: @grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = &quot;:.*?## &quot;}; {printf &quot;\033[36m%-30s\033[0m %s\n&quot;, $$1, $$2}' all: ## deploy all dotfiles [ -d ~/bin] || mkdir -p ~/bin [ -d ~/pkg] || mkdir -p ~/pkg [ -d ~/src] || mkdir -p ~/src [ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc [ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.
+        
+        ...<a class="button is-link" href="https://ntk1000.github.io/post/2018-06-01-setup-mac/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
     
     <article>
       <h1 class="title"><a href="https://ntk1000.github.io/post/2018-05-02-re-create-blog/">re create blog</a></h1>
@@ -204,24 +225,6 @@ file $ git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch fil
       </div>
     </article>
     
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-10-31/">oct 2016 log</a></h1>
-      <h2 class="subtitle is-5">October 31, 2016</h2>
-      
-      <div class="content">
-        2016-10-28 how 2 get image via aws ecr on docker / docker-compose?
- aws ecr get-login command provides docker login to aws ecr sample shell as follows  # check credentails : &quot;${AWS_ACCESS_KEY_ID?env empty}&quot; : &quot;${AWS_SECRET_ACCESS_KEY?env empty}&quot; : &quot;${AWS_DEFAULT_REGION?env empty}&quot; echo &quot;docker login via aws ecr command&quot; #eval &quot;$(docker-machine env default)&quot; $(aws ecr get-login --region $AWS_DEFAULT_REGION)  after docker login passes, docker / docker-compose can handle docker images on aws ecr.
-        
-        ...<a class="button is-link" href="https://ntk1000.github.io/post/2016-10-31/" style="height:28px">
-          Read more
-          <span class="icon is-small">
-            <i class="fa fa-angle-double-right"></i>
-          </span>
-        </a>
-        
-      </div>
-    </article>
-    
   </div>
 </section>
 <section class="section">
@@ -267,9 +270,13 @@ file $ git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch fil
 
 
 <script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-33278616-2', 'auto');
-ga('send', 'pageview');
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-33278616-2', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 <script async src='//www.google-analytics.com/analytics.js'></script>
 

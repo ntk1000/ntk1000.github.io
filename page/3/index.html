@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.40" />
+	<meta name="generator" content="Hugo 0.41" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="keyword 1, keyword 2, keyword 3" name="keywords">
@@ -69,6 +69,16 @@
 
 <section class="section">
   <div class="container">
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-02-02-febmemo/">memo</a></h1>
+      <h2 class="subtitle is-5">February 2, 2016</h2>
+      
+      <div class="content">
+         done with docker ecosystem  create each container via Dockerfile set every containers up and connect with port via docker-compose.yml  think about hashicorp tools  Vagrant or Packer alternate with Dockerfile Terraform alternate with docker-compose  
+        
+      </div>
+    </article>
     
     <article>
       <h1 class="title"><a href="https://ntk1000.github.io/post/2016-01-30-jan2016/">jan 2016 kpt</a></h1>
@@ -179,26 +189,6 @@ code syntaxが~に変わるので違和感がある
       </div>
     </article>
     
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2015-01-16-csharpetc/">c#</a></h1>
-      <h2 class="subtitle is-5">January 16, 2015</h2>
-      
-      <div class="content">
-        Regex stackoverflowで見たコードの詳細を調べる
-コード
-string s = &quot;test [4df] test [5y&quot; + Environment.NewLine + &quot;u] test [6nf]&quot;; ICollection&lt;string&gt; matches = Regex.Matches(s.Replace(Environment.NewLine, &quot;&quot;), @&quot;\[([^]]*)\]&quot;) .Cast&lt;Match&gt;() .Select(x =&gt; x.Groups[1].Value) .ToList(); foreach (string match in matches) Console.WriteLine(match);  正規表現の意味
- \[ : Match a literal [ ( : Start a new group, match.Groups[1] [^]] : Match any character except ] * : 0 or more of the above ) : Close the group \] : Literal ]  自分の場合やりたかったのは 「さむい(小並感)」みたいな文字列から「小並感」を抽出したかった あるいは「ほほほ(へへへ(ふふふ))」から「へへへ(ふふふ)」を抽出
-        
-        ...<a class="button is-link" href="https://ntk1000.github.io/post/2015-01-16-csharpetc/" style="height:28px">
-          Read more
-          <span class="icon is-small">
-            <i class="fa fa-angle-double-right"></i>
-          </span>
-        </a>
-        
-      </div>
-    </article>
-    
   </div>
 </section>
 <section class="section">
@@ -251,9 +241,13 @@ string s = &quot;test [4df] test [5y&quot; + Environment.NewLine + &quot;u] test
 
 
 <script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-33278616-2', 'auto');
-ga('send', 'pageview');
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-33278616-2', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 <script async src='//www.google-analytics.com/analytics.js'></script>
 
