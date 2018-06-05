@@ -98,12 +98,12 @@ all: ## deploy all dotfiles
 	[ -f ~/.gitconfig ] || ln -s $(PWD)/gitconfig ~/.gitconfig
 
 clean: ## clean dotfiles
-	[ -f ~/.vimrc ] || rm ~/.vimrc
-	[ -f ~/.zshrc ] || rm ~/.zshrc
-	[ -f ~/.gitconfig ] || rm ~/.gitconfig
+	[ -f ~/.vimrc ] &amp;&amp; rm ~/.vimrc
+	[ -f ~/.zshrc ] &amp;&amp; rm ~/.zshrc
+	[ -f ~/.gitconfig ] &amp;&amp; rm ~/.gitconfig
 
 brew: ## setup homebrew via Brewfile
-	/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+	/usr/bin/ruby -e &quot;$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
 	brew bundle cleanup
 	brew bundle
 
@@ -140,11 +140,11 @@ defaluts: ## setup defaults write
 <li>shiftitのキーバインドを設定する</li>
 </ul>
 
-<p>TODO</p>
+<p>fixed</p>
 
 <ul>
-<li>makeでhomebrewをいれるone linerが動かなかった</li>
-<li>makeでlogin shellを変える処理が動かなかった</li>
+<li>makeでhomebrewをいれるone linerが動かなかった -&gt; $$ でescapeするの忘れてた</li>
+<li>makeでlogin shellを変える処理が動かなかった -&gt; かんちがいぽい</li>
 </ul>
 
     </div>
