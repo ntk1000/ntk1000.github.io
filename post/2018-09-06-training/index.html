@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="keyword 1, keyword 2, keyword 3" name="keywords">
 <meta content="ntk1000" name="author">
-<meta property="og:title" content="oct 2016 log - ntk1000 zlog">
-<meta property="og:url" content="https://ntk1000.github.io/post/2016-10-31/">
+<meta property="og:title" content="筋肉は裏切らない - ntk1000 zlog">
+<meta property="og:url" content="https://ntk1000.github.io/post/2018-09-06-training/">
 <meta property="og:description" content="Your description here">
 <meta property="og:type" content="website" />
-<title>oct 2016 log | ntk1000 zlog</title>
+<title>筋肉は裏切らない | ntk1000 zlog</title>
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -69,72 +69,84 @@
 
 <section class="section">
   <div class="container">
-    <h1 class="title">oct 2016 log</h1>
-    <h2 class="subtitle is-5">October 31, 2016 by ntk1000</h2>
+    <h1 class="title">筋肉は裏切らない</h1>
+    <h2 class="subtitle is-5">September 6, 2018 by ntk1000</h2>
     
     <div class="content">
       
 
-<h2 id="2016-10-28">2016-10-28</h2>
+<p>日次で筋トレをするようになって1年以上が経過したので記録として書く</p>
 
-<p>how 2 get image via aws ecr on docker / docker-compose?</p>
+<h2 id="なぜ始めたのか">なぜ始めたのか</h2>
 
 <ul>
-<li><code>aws ecr get-login</code> command provides <code>docker login</code> to aws ecr</li>
-<li>sample shell as follows</li>
+<li>体調不良</li>
+<li>日常生活の中で汗を書いてない</li>
+<li>体力の衰え</li>
+<li>年々衰えていくことへの不安</li>
 </ul>
 
-<pre><code># check credentails
-: &quot;${AWS_ACCESS_KEY_ID?env empty}&quot;
-: &quot;${AWS_SECRET_ACCESS_KEY?env empty}&quot;
-: &quot;${AWS_DEFAULT_REGION?env empty}&quot;
-
-echo &quot;docker login via aws ecr command&quot;
-#eval &quot;$(docker-machine env default)&quot;
-$(aws ecr get-login --region $AWS_DEFAULT_REGION)
-</code></pre>
-
-<p>after <code>docker login</code> passes, docker / docker-compose can handle docker images on aws ecr.
-<strong>token via <code>get-login</code> command is valid for only 12 hours.</strong></p>
-
-<h2 id="2016-10-24">2016-10-24</h2>
-
-<p>get stdin in shell</p>
-
-<pre><code>while read line
-do
-	result=$result$line
-done &lt;  &quot;${1:-/dev/stdin}&quot;
-
-</code></pre>
-
-<p>trim last charactor of variables</p>
-
-<pre><code>result=hogehoge
-echo ${result:0:${#result}-1}
-</code></pre>
-
-<h2 id="2016-10-20">2016-10-20</h2>
-
-<p>terraform cheetsheat</p>
+<h2 id="始める上での前提">始める上での前提</h2>
 
 <ul>
-<li>terraform loads all of <code>.tf</code> file</li>
-<li><code>terraform plan</code> shows what changes will apply to infra (aka dry-run)</li>
-<li><code>terraform apply</code> creates &ldquo;real&rdquo; resources</li>
-<li><code>terraform show</code> shows actual infra status</li>
-<li><code>terraform plan -destroy</code> shows what resources will destroy</li>
-<li><code>terraform destroy</code> destroy infra</li>
+<li>ジムには通わない</li>
+<li>自宅でできる</li>
+<li>スキマ時間でできる</li>
+<li>自重トレーニング</li>
+</ul>
+
+<h2 id="参考書籍">参考書籍</h2>
+
+<p>プリズナートレーニング</p>
+
+<h2 id="取組みの変遷">取組みの変遷</h2>
+
+<h3 id="2017-07-2017-12">2017-07 - 2017-12</h3>
+
+<ul>
+<li>腕立て伏せ
+
+<ul>
+<li>腕立てを継続</li>
+<li>足上げて負荷を与える</li>
+</ul></li>
+<li>時々スクワット</li>
+</ul>
+
+<h3 id="2018-01-2018-08">2018-01 - 2018-08</h3>
+
+<ul>
+<li>ぶら下がり健康器を購入</li>
+<li>懸垂
+
+<ul>
+<li>懸垂を継続</li>
+</ul></li>
+</ul>
+
+<h3 id="2018-09">2018-09 -</h3>
+
+<ul>
+<li>みんなで筋肉体操の開始</li>
+<li>懸垂 + 5分トレーニング</li>
+<li>スクワットは毎日</li>
+</ul>
+
+<h2 id="結果">結果</h2>
+
+<ul>
+<li>すっきりした</li>
+<li>健康に意識的になった</li>
 </ul>
 
     </div>
     
         <div class="nav-left">
-    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-10-31%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-10-31%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-10-31%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://twitter.com/home?status=oct%202016%20log - https%3a%2f%2fntk1000.github.io%2fpost%2f2016-10-31%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
-    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-10-31%2f&title=oct%202016%20log" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-09-06-training%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-09-06-training%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-09-06-training%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=%e7%ad%8b%e8%82%89%e3%81%af%e8%a3%8f%e5%88%87%e3%82%89%e3%81%aa%e3%81%84 - https%3a%2f%2fntk1000.github.io%2fpost%2f2018-09-06-training%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-09-06-training%2f&title=%e7%ad%8b%e8%82%89%e3%81%af%e8%a3%8f%e5%88%87%e3%82%89%e3%81%aa%e3%81%84" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
     
     </div>
     

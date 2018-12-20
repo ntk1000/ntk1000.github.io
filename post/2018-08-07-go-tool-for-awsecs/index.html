@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="keyword 1, keyword 2, keyword 3" name="keywords">
 <meta content="ntk1000" name="author">
-<meta property="og:title" content="oct 2016 log - ntk1000 zlog">
-<meta property="og:url" content="https://ntk1000.github.io/post/2016-10-31/">
+<meta property="og:title" content="go tool for awsecs - ntk1000 zlog">
+<meta property="og:url" content="https://ntk1000.github.io/post/2018-08-07-go-tool-for-awsecs/">
 <meta property="og:description" content="Your description here">
 <meta property="og:type" content="website" />
-<title>oct 2016 log | ntk1000 zlog</title>
+<title>go tool for awsecs | ntk1000 zlog</title>
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -69,72 +69,44 @@
 
 <section class="section">
   <div class="container">
-    <h1 class="title">oct 2016 log</h1>
-    <h2 class="subtitle is-5">October 31, 2016 by ntk1000</h2>
+    <h1 class="title">go tool for awsecs</h1>
+    <h2 class="subtitle is-5">August 7, 2018 by ntk1000</h2>
     
     <div class="content">
-      
+      <p>goでaws ecsの情報を取得するツールを作った</p>
 
-<h2 id="2016-10-28">2016-10-28</h2>
+<p>やりたかったこと</p>
 
-<p>how 2 get image via aws ecr on docker / docker-compose?</p>
+<p>なんとなく、できるだけ標準ライブラリのみで作るようにした</p>
 
-<ul>
-<li><code>aws ecr get-login</code> command provides <code>docker login</code> to aws ecr</li>
-<li>sample shell as follows</li>
-</ul>
+<p>進め方</p>
 
-<pre><code># check credentails
-: &quot;${AWS_ACCESS_KEY_ID?env empty}&quot;
-: &quot;${AWS_SECRET_ACCESS_KEY?env empty}&quot;
-: &quot;${AWS_DEFAULT_REGION?env empty}&quot;
+<p>ざっくり、どのAPI叩けば欲しい情報が取得できるか確認する</p>
 
-echo &quot;docker login via aws ecr command&quot;
-#eval &quot;$(docker-machine env default)&quot;
-$(aws ecr get-login --region $AWS_DEFAULT_REGION)
-</code></pre>
+<p>リファクタリング</p>
 
-<p>after <code>docker login</code> passes, docker / docker-compose can handle docker images on aws ecr.
-<strong>token via <code>get-login</code> command is valid for only 12 hours.</strong></p>
+<p>テストを書く</p>
 
-<h2 id="2016-10-24">2016-10-24</h2>
+<p>CI/CD周りをやっていく</p>
 
-<p>get stdin in shell</p>
+<p>使う</p>
 
-<pre><code>while read line
-do
-	result=$result$line
-done &lt;  &quot;${1:-/dev/stdin}&quot;
+<p>参考にした記事</p>
 
-</code></pre>
-
-<p>trim last charactor of variables</p>
-
-<pre><code>result=hogehoge
-echo ${result:0:${#result}-1}
-</code></pre>
-
-<h2 id="2016-10-20">2016-10-20</h2>
-
-<p>terraform cheetsheat</p>
-
-<ul>
-<li>terraform loads all of <code>.tf</code> file</li>
-<li><code>terraform plan</code> shows what changes will apply to infra (aka dry-run)</li>
-<li><code>terraform apply</code> creates &ldquo;real&rdquo; resources</li>
-<li><code>terraform show</code> shows actual infra status</li>
-<li><code>terraform plan -destroy</code> shows what resources will destroy</li>
-<li><code>terraform destroy</code> destroy infra</li>
-</ul>
+<p>cliを書くにあたって
+* <a href="https://speakerdeck.com/tcnksm/komandorainturunituiteyu-rutokinipu-falseyu-rukoto-number-yapcasia">https://speakerdeck.com/tcnksm/komandorainturunituiteyu-rutokinipu-falseyu-rukoto-number-yapcasia</a>
+* <a href="https://blog.yuuk.io/entry/go-cli-unix">https://blog.yuuk.io/entry/go-cli-unix</a>
+* <a href="https://deeeet.com/writing/2014/12/18/golang-cli-test/">https://deeeet.com/writing/2014/12/18/golang-cli-test/</a>
+CI/CDまわり</p>
 
     </div>
     
         <div class="nav-left">
-    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-10-31%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-10-31%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-10-31%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
-    <a class="nav-item" href="https://twitter.com/home?status=oct%202016%20log - https%3a%2f%2fntk1000.github.io%2fpost%2f2016-10-31%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
-    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2016-10-31%2f&title=oct%202016%20log" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-08-07-go-tool-for-awsecs%2f" title="Share on Facebook" target="_blank"><span class="fa fa-facebook fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://plus.google.com/share?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-08-07-go-tool-for-awsecs%2f" title="Share on Google+" target="_blank"><span class="fa fa-google-plus fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-08-07-go-tool-for-awsecs%2f" title="Share on LinkedIn" target="_blank"><span class="fa fa-linkedin fa-2x" aria-hidden="true"></span></a>
+    <a class="nav-item" href="https://twitter.com/home?status=go%20tool%20for%20awsecs - https%3a%2f%2fntk1000.github.io%2fpost%2f2018-08-07-go-tool-for-awsecs%2f" title="Tweet this" target="_blank"><span class="fa fa-twitter fa-2x"></span></a>
+    <a class="nav-item" href="http://www.reddit.com/submit?url=https%3a%2f%2fntk1000.github.io%2fpost%2f2018-08-07-go-tool-for-awsecs%2f&title=go%20tool%20for%20awsecs" title="Share on Reddit" target="_blank"><span class="fa fa-reddit-alien fa-2x" aria-hidden="true"></span></a>
     
     </div>
     

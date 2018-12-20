@@ -70,6 +70,52 @@
   <div class="container">
     
     <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2018-09-06-training/">筋肉は裏切らない</a></h1>
+      <h2 class="subtitle is-5">September 6, 2018</h2>
+      
+      <div class="content">
+         日次で筋トレをするようになって1年以上が経過したので記録として書く
+なぜ始めたのか  体調不良 日常生活の中で汗を書いてない 体力の衰え 年々衰えていくことへの不安  始める上での前提  ジムには通わない 自宅でできる スキマ時間でできる 自重トレーニング  参考書籍 プリズナートレーニング
+取組みの変遷 2017-07 - 2017-12  腕立て伏せ  腕立てを継続 足上げて負荷を与える  時々スクワット  2018-01 - 2018-08  ぶら下がり健康器を購入 懸垂  懸垂を継続   2018-09 -  みんなで筋肉体操の開始 懸垂 + 5分トレーニング スクワットは毎日  結果  すっきりした 健康に意識的になった  
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2018-08-07-go-tool-for-awsecs/">go tool for awsecs</a></h1>
+      <h2 class="subtitle is-5">August 7, 2018</h2>
+      
+      <div class="content">
+        goでaws ecsの情報を取得するツールを作った
+やりたかったこと
+なんとなく、できるだけ標準ライブラリのみで作るようにした
+進め方
+ざっくり、どのAPI叩けば欲しい情報が取得できるか確認する
+リファクタリング
+テストを書く
+CI/CD周りをやっていく
+使う
+参考にした記事
+cliを書くにあたって * https://speakerdeck.com/tcnksm/komandorainturunituiteyu-rutokinipu-falseyu-rukoto-number-yapcasia * https://blog.yuuk.io/entry/go-cli-unix * https://deeeet.com/writing/2014/12/18/golang-cli-test/ CI/CDまわり
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2018-08-06-vim-go/">vim-go and goenv</a></h1>
+      <h2 class="subtitle is-5">August 6, 2018</h2>
+      
+      <div class="content">
+        vimmerの端くれのものです
+日常業務はvimを通じて行っております
+goを開発する時は vim-go と goenv をつかっている
+vim-goで :GoInfo ないし :GoDef すると外部ライブラリは認識するのだけど 標準ライブラリが認識されなかった
+goenvで設定するとGOROOTがうまく認識されてないっぽかった GOROOTを明示的に設定してあげることで解決した
+        
+      </div>
+    </article>
+    
+    <article>
       <h1 class="title"><a href="https://ntk1000.github.io/post/2018-06-01-setup-mac/">setup mac for 2times</a></h1>
       <h2 class="subtitle is-5">June 1, 2018</h2>
       
@@ -171,59 +217,6 @@ aws s3 rm s3://bucket-name/ --recursive
       </div>
     </article>
     
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2017-01-31/">jan 2017 log</a></h1>
-      <h2 class="subtitle is-5">January 31, 2017</h2>
-      
-      <div class="content">
-         2017-01-24 about td-agent
-# conf dry-run sudo td-agent --dry-run -c /etc/td-agent/td-agent.conf # init sudo /etc/init.d/td-agent status (etc.) # log sudo tail -f /var/log/td-agent/td-agent.log  2017-01-23 log location of ec2 user-data
-less /var/log/cloud-init-output.log  2017-01-12 sudo td-agent-gem install fluent-plugin-rewrite-tag-filter sudo td-agent-gem install fluent-plugin-slack  2017-01-11 via * https://coreos.com/os/docs/latest/scheduling-tasks-with-systemd-timers.html * http://stackoverflow.com/questions/29086918/docker-compose-to-coreos * http://qiita.com/TakiTake@github/items/b66aeb1eb266f97fafe5
-auto start docker-compose on coreos
-sudo coreos-cloudinit --from-file /path/to/cloud-config.yml  
-        
-      </div>
-    </article>
-    
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-12-31/">dec 2016 log</a></h1>
-      <h2 class="subtitle is-5">December 31, 2016</h2>
-      
-      <div class="content">
-        2016-12-12 via http://nekop.hatenablog.com/entry/2015/08/21/160436 docker clean-up w/o error
-docker ps -q -f status=exited | xargs --no-run-if-empty docker rm docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi  2016-12-08 exclude commented out and blank line
-grep -v -e '#' -e '^$' ./httpd.conf  wc under multi dir/files
-wc -l ./*/*.conf | sort | $PAGER  2016-12-07 show ruby configure options
-ruby -r rbconfig -e 'puts RbConfig::CONFIG[&quot;configure_args&quot;]'  2016-12-01 destroy specific target with tf file via terraform
-        
-        ...<a class="button is-link" href="https://ntk1000.github.io/post/2016-12-31/" style="height:28px">
-          Read more
-          <span class="icon is-small">
-            <i class="fa fa-angle-double-right"></i>
-          </span>
-        </a>
-        
-      </div>
-    </article>
-    
-    <article>
-      <h1 class="title"><a href="https://ntk1000.github.io/post/2016-11-30/">nov 2016 log</a></h1>
-      <h2 class="subtitle is-5">November 30, 2016</h2>
-      
-      <div class="content">
-        2016-11-18 erase specific git file/directory
-file $ git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch filename' HEAD directory $ git filter-branch -f --index-filter 'git rm -rf --cached --ignore-unmatch dirname' HEAD push $ git push --force origin branch  2016-11-01 ! not for production docker-compose on coreos via http://www.ericluwj.com/2015/10/20/installing-docker-compose-in-coreos.html * sudo su - * mkdir -p /opt/bin * curl -L https://github.com/docker/compose/releases/download/X.Y.Z/docker-compose-`uname -s-uname -m` &gt; /opt/bin/docker-compose * chmod +x /opt/bin/docker-compose * that&rsquo;s it
-        
-        ...<a class="button is-link" href="https://ntk1000.github.io/post/2016-11-30/" style="height:28px">
-          Read more
-          <span class="icon is-small">
-            <i class="fa fa-angle-double-right"></i>
-          </span>
-        </a>
-        
-      </div>
-    </article>
-    
   </div>
 </section>
 <section class="section">
@@ -268,7 +261,7 @@ file $ git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch fil
 <script>hljs.initHighlightingOnLoad();</script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -277,7 +270,7 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
