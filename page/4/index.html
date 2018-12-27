@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.41" />
+	<meta name="generator" content="Hugo 0.52" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="keyword 1, keyword 2, keyword 3" name="keywords">
@@ -69,6 +69,51 @@
 
 <section class="section">
   <div class="container">
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2015-01-22-bd33/">bd33</a></h1>
+      <h2 class="subtitle is-5">January 22, 2015</h2>
+      
+      <div class="content">
+        33
+https://www.youtube.com/watch?v=9fWipOMTc34
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2015-01-21-webdriversample/">WebDriver.js</a></h1>
+      <h2 class="subtitle is-5">January 21, 2015</h2>
+      
+      <div class="content">
+        この記事を参考にweb自動化の練習
+Selenium Server
+start-selenium  実行
+node webdrivertest.js   ﻿var webdriver = require('selenium-webdriver'); var By = webdriver.By; var SeleniumServer = require('selenium-webdriver/remote').SeleniumServer; var pathToSeleniumJar = 'C:\\Program Files\\nodejs\\node_modules\\selenium-standalone\\.selenium\\2.44.0\\server.jar' var server = new SeleniumServer(pathToSeleniumJar,{ port : 4444}); server.start(); var driver = new webdriver .Builder() .usingServer(server.address()) .withCapabilities(webdriver.Capabilities.chrome()) .build(); var $ = driver.findElement.bind(driver); driver.get('url'); // Login $(By.name('LoginID')).sendKeys('id'); $(By.name('LoginPassword')).sendKeys('passwd'); $(By.name('btnLogin')).click(); // var timeoutMSec = 2000; driver .wait(webdriver.until.elementLocated(By.name('buttonCompanySelect')), timeoutMSec) .then(function() { console.log('login success'); $(By.id('120')).click(); $(By.id('buttonCompanySelect')).click(); driver .
+        
+        ...<a class="button is-link" href="https://ntk1000.github.io/post/2015-01-21-webdriversample/" style="height:28px">
+          Read more
+          <span class="icon is-small">
+            <i class="fa fa-angle-double-right"></i>
+          </span>
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <h1 class="title"><a href="https://ntk1000.github.io/post/2015-01-17-test/">markdown error</a></h1>
+      <h2 class="subtitle is-5">January 17, 2015</h2>
+      
+      <div class="content">
+        ちゃんと更新されないのでテスト
+markdownのエラーだったので従って修正した
+_config.yml fileを
+markdown: kramdown  変えた
+code syntaxが~に変わるので違和感がある
+        
+      </div>
+    </article>
     
     <article>
       <h1 class="title"><a href="https://ntk1000.github.io/post/2015-01-16-csharpetc/">c#</a></h1>
@@ -160,7 +205,7 @@ memo 昨日のトラブル時に外国のエンジニアが使っていたツー
 <script>hljs.initHighlightingOnLoad();</script>
 
 
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -169,7 +214,7 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
